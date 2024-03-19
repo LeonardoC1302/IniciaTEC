@@ -1,0 +1,56 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.home{
+    margin: 5rem 0;
+    padding: 0 5rem;
+}
+
+.our-services{
+}
+
+.services-nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .service{
+        color: v.$bg-color;
+        font-weight: v.$black-font;
+        padding: 1rem;
+        background-repeat: no-repeat;
+        background-size: 600px, 600px, cover, cover;
+        background-position: center center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 2rem;
+        border-radius: 1rem;
+        margin: 1rem;
+        min-height: 20rem; // Adjust the min-height for smaller screens
+        font-size: 2rem; // Adjust the font-size for smaller screens
+        flex: 1 1 100%; // Make the anchors full-width on smaller screens
+        
+        @include m.tablet{
+            font-size: 3rem;
+            min-height: 30rem;
+            flex: 1 1 20rem; // Set a flexible width with a max-width of 30rem
+        }
+        
+        &--guias{
+            background-image: linear-gradient( to right, rgba(v.$black-color, 1), rgba(v.$black-color, 0.5)), image-set( url(../img/guias.avif) 1x, url(../img/guias.webp) 1x, url(../img/guias.jpg) 1x);
+        }
+        &--profesores{
+            background-image: linear-gradient( to right, rgba(v.$black-color, 1), rgba(v.$black-color, 0.5)), image-set( url(../img/profesores.avif) 1x, url(../img/profesores.webp) 1x, url(../img/profesores.jpg) 1x);
+        }
+        &--estudiantes{
+            background-image: linear-gradient( to right, rgba(v.$black-color, 1), rgba(v.$black-color, 0.5)), image-set( url(../img/estudiantes.avif) 1x, url(../img/estudiantes.webp) 1x, url(../img/estudiantes.jpg) 1x);
+        }
+        &--actividades{
+            background-image: linear-gradient( to right, rgba(v.$black-color, 1), rgba(v.$black-color, 0.5)), image-set( url(../img/actividades.avif) 1x, url(../img/actividades.webp) 1x, url(../img/actividades.jpg) 1x);
+        }
+        &--cuenta{
+            background-image: linear-gradient( to right, rgba(v.$black-color, 1), rgba(v.$black-color, 0.5)), image-set( url(../img/cuenta.avif) 1x, url(../img/cuenta.webp) 1x, url(../img/cuenta.jpg) 1x);
+        }
+    }
+}

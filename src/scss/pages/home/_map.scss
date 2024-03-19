@@ -1,0 +1,14 @@
+.map{
+    height: 45rem;
+    margin: 0;
+    &__heading{
+        margin: 0;
+        text-align: left;
+        font-size: 1.6rem;
+    }
+
+    &__text{
+        font-size: 1.2rem;
+        margin: 0;
+    }
+}

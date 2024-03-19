@@ -1,5 +1,5 @@
-@use 'variables' as v;
-@use 'mixins' as m;
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
 
 h1, h2, h3 {
     @include m.headings;
@@ -16,4 +16,8 @@ h3 {
 }
 .text-center {
     text-align: center;
+}
+
+[class$="__heading"] {
+    @include m.page-name;
 }

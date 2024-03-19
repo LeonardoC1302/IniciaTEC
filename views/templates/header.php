@@ -7,6 +7,7 @@
         <nav class="header__nav">
             <a href="#" class="header__nav__link">Inicio</a>
             <a href="#" class="header__nav__link">Equipo Guía</a>
+            <a href="#" class="header__nav__link">Profesores</a>
             <a href="#" class="header__nav__link">Estudiantes</a>
             <a href="#" class="header__nav__link">Actividades</a>
             <a href="#" class="header__nav__link">Mi cuenta</a>

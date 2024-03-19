@@ -104,3 +104,18 @@
 @mixin bg-gradient($bgcolor){
     background-image: linear-gradient(to left top, $bgcolor, lighten($bgcolor, 15%));
 }
+
+@mixin page-name{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0rem 0;
+    text-align: center;
+    font-weight: v.$regular;
+    font-size: 2.3rem;
+    padding: 0;
+    span{
+        @include headings;
+        font-size: 3.6rem;
+        margin: .5rem 0 3rem 0;
+    }
+}
