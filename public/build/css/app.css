@@ -1,3 +1,10 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -347,6 +354,23 @@ h3 {
   text-align: center;
 }
 
+[class$=__heading] {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0 0rem 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 2.3rem;
+  padding: 0;
+}
+[class$=__heading] span {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  margin: 2rem 0;
+  font-size: 3.6rem;
+  margin: 0.5rem 0 3rem 0;
+}
+
 .header {
   background-color: #2A2C41;
 }
@@ -410,5 +434,70 @@ h3 {
 }
 .footer__copy--regular {
   font-weight: 400;
+}
+
+.home {
+  margin: 5rem 0;
+  padding: 0 5rem;
+}
+
+.services-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.services-nav .service {
+  color: #F7F7FC;
+  font-weight: 900;
+  padding: 1rem;
+  background-repeat: no-repeat;
+  background-size: 600px, 600px, cover, cover;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  min-height: 20rem;
+  font-size: 2rem;
+  flex: 1 1 100%;
+}
+@media (min-width: 768px) {
+  .services-nav .service {
+    font-size: 3rem;
+    min-height: 30rem;
+    flex: 1 1 20rem;
+  }
+}
+.services-nav .service--guias {
+  background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.5)), image-set(url(../img/guias.avif) 1x, url(../img/guias.webp) 1x, url(../img/guias.jpg) 1x);
+}
+.services-nav .service--profesores {
+  background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.5)), image-set(url(../img/profesores.avif) 1x, url(../img/profesores.webp) 1x, url(../img/profesores.jpg) 1x);
+}
+.services-nav .service--estudiantes {
+  background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.5)), image-set(url(../img/estudiantes.avif) 1x, url(../img/estudiantes.webp) 1x, url(../img/estudiantes.jpg) 1x);
+}
+.services-nav .service--actividades {
+  background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.5)), image-set(url(../img/actividades.avif) 1x, url(../img/actividades.webp) 1x, url(../img/actividades.jpg) 1x);
+}
+.services-nav .service--cuenta {
+  background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.5)), image-set(url(../img/cuenta.avif) 1x, url(../img/cuenta.webp) 1x, url(../img/cuenta.jpg) 1x);
+}
+
+.map {
+  height: 45rem;
+  margin: 0;
+}
+.map__heading {
+  margin: 0;
+  text-align: left;
+  font-size: 1.6rem;
+}
+.map__text {
+  font-size: 1.2rem;
+  margin: 0;
 }
 /*# sourceMappingURL=app.css.map */
