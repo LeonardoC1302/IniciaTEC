@@ -1,0 +1,16 @@
+Equipo #1
+Erika Cerdas Mejías - 2022138199
+Leonardo Céspedes Tenorio - 2022080602
+Kevin Chang Chang - 2022039050
+Frankmin Feng Zhong - 2022089248
+Enlaces:
+
+Vista de Escenarios: https://docs.google.com/document/d/1nydy5BLXk8bW5eneNv1FAJhx8dhhrcr7IHasCs6xrMw/edit?usp=sharing
+
+Paper Prototype: https://www.figma.com/file/34Ef1UFo9MGHvgwdUZlgzO/IniciaTEC-PaperPrototype?type=design&node-id=0%3A1&mode=design&t=NCJJQFhwYUQbK1cd-1
+
+Vista Física: https://drive.google.com/file/d/1hYGEeLz24wbS2FHvDv8pz1qkaM-JmfBv/view?usp=sharing
+
+Vista de Implementación: https://drive.google.com/file/d/1ny50FdVpB-gt6fCn8QUaK5R-e3CMTZ_b/view?usp=sharing
+
+Vista de Procesos: https://drive.google.com/file/d/1ip46GqSeRf1nzn8GFaXxaTQO_SV-Tq_-/view?usp=sharing
