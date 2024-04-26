@@ -1,0 +1,45 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.form{
+    &__field{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border: 1px solid lighten(v.$gray, 40%);
+        border-left: 5px solid v.$accent-color;
+        margin-bottom: 1rem;
+    }
+    &__label{
+        font-size: 1.3rem;
+        color: v.$gray;
+        padding-bottom: .4rem;
+    }
+    &__input{
+        border: none;
+        color: v.$accent-color;
+
+        &:focus{
+            outline: none;
+        }
+    }
+    &__actions{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    &__action{
+        font-size: 1.5rem;
+        color: lighten(v.$accent-color, 20%);
+        cursor: pointer;
+        &:hover{
+            color: v.$accent-color;
+            text-decoration: underline;
+        }
+    }
+    &__submit{
+        @include m.button(v.$accent-color, v.$white);
+        width: auto;
+    }
+}

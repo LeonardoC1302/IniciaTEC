@@ -18,10 +18,10 @@
     }
 
     &__logo{
-        @include m.fluid-text(3rem, 4rem);
+        @include m.fluid-text(2rem, 4rem);
         text-align: center;
         color: v.$bg-color;
-        margin: 0;
+        margin: 0 1rem;
         @include m.tablet{
             text-align: left;
             display: inline-block;
