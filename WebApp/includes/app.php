@@ -10,4 +10,4 @@ $dotenv->safeLoad();
 require 'functions.php';
 require 'database.php';
 
-// ActiveRecord::setDB($db);
+ActiveRecord::setDB($db);

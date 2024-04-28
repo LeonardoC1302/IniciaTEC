@@ -24,4 +24,7 @@ $router->get('/account', [AuthController::class, 'account']);
 // Students routes
 $router->get('/students', [StudentsController::class, 'index']);
 
+$router->get('/students/update', [StudentsController::class, 'update']);
+$router->post('/students/update', [StudentsController::class, 'update']);
+
 $router->checkRoutes();

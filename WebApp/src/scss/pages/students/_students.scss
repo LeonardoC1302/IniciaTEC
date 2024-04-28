@@ -13,5 +13,24 @@
     background-color: v.$white;
     padding: 2rem;
     border-radius: 1rem;
-    margin: 2rem;
+    margin: 2rem 2rem auto 2rem;
+
+    &_actions{
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem;
+        &__register{
+            @include m.button(v.$accent-color, v.$white);
+            width: auto;
+        }
+        &__report{
+            @include m.button(v.$secondary-color, v.$white);
+            width: auto;
+        }
+    }
+
+    &__empty{
+        text-align: center;
+        font-size: 2rem;
+    }
 }

@@ -23,3 +23,12 @@ img {
     width: 100%;
     height: auto;
 }
+.volver{
+    color: v.$primary-color;
+    font-size: 1.8rem;
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+}
