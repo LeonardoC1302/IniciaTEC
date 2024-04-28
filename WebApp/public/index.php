@@ -27,4 +27,5 @@ $router->get('/students', [StudentsController::class, 'index']);
 $router->get('/students/update', [StudentsController::class, 'update']);
 $router->post('/students/update', [StudentsController::class, 'update']);
 
+$router->post('/students/delete', [StudentsController::class, 'delete']);
 $router->checkRoutes();

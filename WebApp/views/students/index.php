@@ -38,7 +38,7 @@
                                 Editar
                             </a>
 
-                            <form action="/students/delete" class="table__form">
+                            <form method="POST" action="/students/delete" class="table__form">
                                 <input type="hidden" name="id" value="<?php echo $student->id; ?>">
                                 <button class="table__action table__action--delete" type="submit">
                                     <i class="fa-solid fa-trash"></i>
