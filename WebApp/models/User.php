@@ -27,4 +27,21 @@ class User extends ActiveRecord{
         $this->roleId = $args['roleId'] ?? '';
         $this->estadoId = $args['estadoId'] ?? '';
     }
+
+    public function validateLogin(){
+        if(!$this->correo){
+            self::setAlert('error', 'El correo es obligatorio');
+        } else if($this->correo && !filter_var($this->correo, FILTER_VALIDATE_EMAIL)){
+            self::setAlert('error', 'El correo no es válido');
+        }
+        if(!$this->contrasenna){
+            self::setAlert('error', 'La contraseña es obligatoria');
+        }
+
+        return self::$alerts;
+    }
+
+    public function hashPassword() : void {
+        $this->contrasenna = password_hash($this->contrasenna, PASSWORD_BCRYPT);
+    }
 }

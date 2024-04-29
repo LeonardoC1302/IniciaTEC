@@ -31,7 +31,7 @@
     }
     &__action{
         font-size: 1.5rem;
-        color: lighten(v.$accent-color, 20%);
+        color: lighten(v.$accent-color, 10%);
         cursor: pointer;
         &:hover{
             color: v.$accent-color;
