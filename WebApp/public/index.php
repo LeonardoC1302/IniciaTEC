@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 require_once __DIR__ . '/../includes/app.php';
 
@@ -7,7 +7,8 @@ use Controllers\AuthController;
 use MVC\Router;
 use Controllers\PagesController;
 use Controllers\Planscontroller;
-use Controllers\StudentsController;
+use Controllers\ProfessorsController; 
+use Controllers\StudentsController; 
 
 $router = new Router();
 
@@ -39,6 +40,11 @@ $router->post('/students/delete', [StudentsController::class, 'delete']);
 // Activities routes
 $router->get('/plans', [Planscontroller::class, 'index']);
 $router->get('/plans/plan', [Planscontroller::class, 'plan']);
+
+// Students routes
+$router->get('/professors', [ProfessorsController::class, 'index']);
+
+
 
 // Run the router
 $router->checkRoutes();

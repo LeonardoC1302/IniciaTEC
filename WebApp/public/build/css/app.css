@@ -845,6 +845,116 @@ h3 {
   color: #FFFFFF;
 }
 
+.professors_actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.professors {
+  padding: 1rem 1rem 3rem 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 2rem auto 2rem;
+}
+.professors_actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+}
+.professors_actions__register {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  width: auto;
+}
+.professors_actions__register:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+.professors_actions__coordinator {
+  background-color: #838BE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  width: auto;
+}
+.professors_actions__coordinator:hover {
+  background-color: #5963dd;
+  cursor: pointer;
+}
+.professors__empty {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.edit_professors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: min(95%, 140rem);
+  margin: 0 auto;
+}
+.edit_professors__form {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.edit_professors__form__field {
+  display: flex;
+  flex-direction: column;
+}
+.edit_professors__form__label {
+  margin-bottom: 0.2rem;
+  font-size: 1.7rem;
+  color: #515442;
+}
+.edit_professors__form__input {
+  width: 30rem;
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
+  font-size: 2rem;
+}
+.edit_professors__form__input:focus {
+  outline: none;
+}
+.edit_professors__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  grid-column: span 2;
+}
+.edit_professors__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+
 .auth, .auth--centered {
   width: min(95%, 60rem);
   margin: 0 auto;

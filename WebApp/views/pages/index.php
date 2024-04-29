@@ -5,7 +5,7 @@
             <a href="#" class="service service--guias">
                 Guías
             </a>
-            <a href="#" class="service service--profesores">
+            <a href="/professors" class="service service--profesores">
                 Profesores
             </a>
             <a href="/students" class="service service--estudiantes">
