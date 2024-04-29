@@ -6,6 +6,7 @@ require_once __DIR__ . '/../includes/app.php';
 use Controllers\AuthController;
 use MVC\Router;
 use Controllers\PagesController;
+use Controllers\Planscontroller;
 use Controllers\StudentsController;
 
 $router = new Router();
@@ -28,4 +29,10 @@ $router->get('/students/update', [StudentsController::class, 'update']);
 $router->post('/students/update', [StudentsController::class, 'update']);
 
 $router->post('/students/delete', [StudentsController::class, 'delete']);
+
+// Activities routes
+$router->get('/plans', [Planscontroller::class, 'index']);
+$router->get('/plans/plan', [Planscontroller::class, 'plan']);
+
+// Run the router
 $router->checkRoutes();

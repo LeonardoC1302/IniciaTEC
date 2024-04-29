@@ -8,13 +8,13 @@
             <a href="#" class="service service--profesores">
                 Profesores
             </a>
-            <a href="#" class="service service--estudiantes">
+            <a href="/students" class="service service--estudiantes">
                 Estudiantes
             </a>
-            <a href="#" class="service service--actividades">
-                Actividades
+            <a href="/plans" class="service service--actividades">
+                Planes
             </a>
-            <a href="#" class="service service--cuenta">
+            <a href="/account" class="service service--cuenta">
                 Mi cuenta
             </a>
         </nav>

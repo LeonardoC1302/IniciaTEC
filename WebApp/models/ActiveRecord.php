@@ -107,6 +107,12 @@ class ActiveRecord {
         return array_shift( $result ) ;
     }
 
+    public static function whereOrder($column, $value, $order) {
+        $query = "SELECT * FROM " . static::$table . " WHERE $column = '$value' ORDER BY $order";
+        $result = self::querySQL($query);
+        return $result;
+    }
+
     public static function order($column, $order){
         $query = "SELECT * FROM " . static::$table . " ORDER BY $column $order";
         $result = self::querySQL($query);

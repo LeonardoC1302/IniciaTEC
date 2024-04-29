@@ -1,0 +1,26 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.plans{
+    padding: 1rem 1rem 3rem 1rem;
+    @include m.shadow;
+    background-color: v.$white;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 2rem auto 2rem;
+
+    &__actions{
+        display: flex;
+        justify-content: flex-end;
+        margin: 2rem;
+        &__create{
+            @include m.button(v.$secondary-color, v.$white);
+            width: auto;
+        }
+    }
+
+    &__empty{
+        text-align: center;
+        font-size: 2rem;
+    }
+}
