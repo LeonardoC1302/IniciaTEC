@@ -40,6 +40,12 @@
             &__input{
                 border: none;
                 border-bottom: 3.5px solid v.$secondary-color;
+                &:focus{
+                    outline: none;
+                }
+                &:disabled{
+                    color: v.$black-color;
+                }
             }
         }
         &__submit{

@@ -7,22 +7,22 @@
         </picture>
     </div>
 
-    <form action="/account" class="account__info">
+    <form method="POST" action="/logout" class="account__info">
         <div class="account__info__field">
             <label for="name" class="account__info__field__label">Nombre Completo</label>
-            <input type="text" id="name" name="name" class="account__info__field__input" value="John Doe">
+            <input disabled type="text" id="name" name="name" class="account__info__field__input" value="<?php echo $user->nombre . " " .  $user->apellidos?>">
         </div> <!-- .account__info__field -->
 
         <div class="account__info__field">
             <label for="email" class="account__info__field__label">Correo Electrónico</label>
-            <input type="email" id="email" name="email" class="account__info__field__input" value="jdoe@estudiantec.cr">
+            <input disabled type="email" id="email" name="email" class="account__info__field__input" value="<?php echo $user->correo ?>">
         </div> <!-- .account__info__field -->
 
         <div class="account__info__field">
             <label for="rol" class="account__info__field__label">Rol</label>
-            <input type="text" id="rol" name="rol" class="account__info__field__input" value="Profesor Coordinador">
+            <input disabled type="text" id="rol" name="rol" class="account__info__field__input" value="<?php echo $user->rol ?>">
         </div> <!-- .account__info__field -->
 
-        <input type="submit" class="account__info__submit" value="Actualizar Cuenta">
+        <input type="submit" class="account__info__submit" value="Cerrar Sesión">
     </form>
 </div>

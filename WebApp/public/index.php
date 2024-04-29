@@ -20,6 +20,8 @@ $router->get('/404', [PagesController::class, 'error']);
 $router->get('/login', [AuthController::class, 'login']);
 $router->post('/login', [AuthController::class, 'login']);
 
+$router->post('/logout', [AuthController::class, 'logout']);
+
 $router->get('/recover', [AuthController::class, 'recover']);
 $router->post('/recover', [AuthController::class, 'recover']);
 

@@ -949,6 +949,12 @@ h3 {
   border: none;
   border-bottom: 3.5px solid #838BE6;
 }
+.account__info__field__input:focus {
+  outline: none;
+}
+.account__info__field__input:disabled {
+  color: #1a1b15;
+}
 .account__info__submit {
   background-color: #838BE6;
   padding: 1.5rem 4rem;

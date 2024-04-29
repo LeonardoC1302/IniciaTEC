@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use Model\Role;
 use Model\User;
 use MVC\Router;
 
@@ -25,7 +26,6 @@ class AuthController {
                         $_SESSION['apellidos'] = $user->apellidos;
                         $_SESSION['correo'] = $user->correo;
                         $_SESSION['roleId'] = $user->roleId;
-
                         // Cambiar dependiendo del rol
                         header('Location: /');
                     } else{
@@ -49,6 +49,27 @@ class AuthController {
     }
 
     public static function account(Router $router){
-        $router->render('auth/account');
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        $user = User::find($_SESSION['id']);
+        if(!$user){
+            header('Location: /');
+        }
+        $role = Role::find($user->roleId);
+        $user->rol = $role->nombre;
+
+        $router->render('auth/account',[
+            'user' => $user
+        ]);
+    }
+
+    public static function logout() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            $_SESSION = [];
+            header('Location: /');
+        }
+       
     }
 }
