@@ -107,8 +107,20 @@ class ActiveRecord {
         return array_shift( $result ) ;
     }
 
+    public static function whereAll($column, $value) {
+        $query = "SELECT * FROM " . static::$table . " WHERE $column = '$value'";
+        $result = self::querySQL($query);
+        return $result;
+    }
+
     public static function whereOrder($column, $value, $order) {
         $query = "SELECT * FROM " . static::$table . " WHERE $column = '$value' ORDER BY $order";
+        $result = self::querySQL($query);
+        return $result;
+    }
+
+    public static function whereNull($column1, $value, $column2) {
+        $query = "SELECT * FROM " . static::$table . " WHERE $column2 IS NULL AND $column1 = '$value'";
         $result = self::querySQL($query);
         return $result;
     }

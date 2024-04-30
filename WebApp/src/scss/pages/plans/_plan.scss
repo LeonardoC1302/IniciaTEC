@@ -47,7 +47,7 @@
 
 }
 
-.activity{
+.activityCard{
     padding: 2rem;
     border-radius: 2rem;
     @include m.shadow;
@@ -81,8 +81,8 @@
     // Apply some styles to the first element of the activities list
     &:first-child{
         background-color: v.$secondary-color;
-        .activity__name,
-        .activity__view{
+        .activityCard__name,
+        .activityCard__view{
             color: v.$white;
         }
 

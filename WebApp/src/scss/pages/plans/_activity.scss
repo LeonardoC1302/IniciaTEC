@@ -1,0 +1,51 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.activity{
+    flex-grow: 1;
+    padding: 0 5rem;
+    &__main{
+        display: flex;
+        justify-content: space-between;
+        &__title{
+            margin: 1rem 0;
+            font-size: 3.5rem;
+        }
+
+        &__comment{
+            display: flex;
+            gap: 1rem;
+            color: v.$secondary-color;
+            font-weight: v.$bold;
+        }
+    }
+
+    &__info{
+        @include m.grid(2, .5rem);
+        column-gap: 5rem;
+        @include m.shadow;
+        width: fit-content;
+        padding: 2rem;
+        &__content{
+            margin: .8rem 0;
+            font-size: 1.7rem;
+            span{
+                font-weight: v.$bold;
+            }
+        }
+    }
+
+    &__comments{
+        margin-top: 4rem;
+        &__title{
+            color: v.$accent-color;
+            font-size: 3rem;
+        }
+
+        &__empty{
+            color: lighten(v.$black-color, 20%);
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+    }
+}

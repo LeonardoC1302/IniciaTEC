@@ -562,6 +562,41 @@ h3 {
   color: #017601;
 }
 
+.comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment, .comment--subcomment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 5px solid #4D5AE6;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+.comment__info {
+  display: flex;
+  flex-direction: column;
+}
+.comment__data {
+  margin: 0;
+  color: #515442;
+  font-size: 1.7rem;
+}
+.comment__content {
+  margin: 0.8rem 0;
+}
+.comment__comment {
+  color: #4D5AE6;
+  font-size: 2.5rem;
+}
+
+.comment--subcomment {
+  border-left: 5px solid #838BE6;
+  margin-left: 5rem;
+}
+
 .home {
   margin: 5rem 0;
   padding: 0 5rem;
@@ -809,26 +844,68 @@ h3 {
   color: #838BE6;
 }
 
-.activity {
+.activityCard {
   padding: 2rem;
   border-radius: 2rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
-.activity__container {
+.activityCard__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
 }
-.activity__view {
+.activityCard__view {
   color: #838BE6;
   align-self: flex-end;
   font-size: 1.5rem;
 }
-.activity__name {
+.activityCard__name {
   margin: 0;
   color: #4D5AE6;
   font-size: 2.5rem;
+}
+.activityCard__info__content {
+  margin: 0.8rem 0;
+  font-size: 1.7rem;
+}
+.activityCard__info__content span {
+  font-weight: 700;
+}
+.activityCard:first-child {
+  background-color: #838BE6;
+}
+.activityCard:first-child .activityCard__name,
+.activityCard:first-child .activityCard__view {
+  color: #FFFFFF;
+}
+
+.activity {
+  flex-grow: 1;
+  padding: 0 5rem;
+}
+.activity__main {
+  display: flex;
+  justify-content: space-between;
+}
+.activity__main__title {
+  margin: 1rem 0;
+  font-size: 3.5rem;
+}
+.activity__main__comment {
+  display: flex;
+  gap: 1rem;
+  color: #838BE6;
+  font-weight: 700;
+}
+.activity__info {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  width: fit-content;
+  padding: 2rem;
 }
 .activity__info__content {
   margin: 0.8rem 0;
@@ -837,12 +914,17 @@ h3 {
 .activity__info__content span {
   font-weight: 700;
 }
-.activity:first-child {
-  background-color: #838BE6;
+.activity__comments {
+  margin-top: 4rem;
 }
-.activity:first-child .activity__name,
-.activity:first-child .activity__view {
-  color: #FFFFFF;
+.activity__comments__title {
+  color: #4D5AE6;
+  font-size: 3rem;
+}
+.activity__comments__empty {
+  color: #515442;
+  font-size: 2rem;
+  margin-top: 2rem;
 }
 
 .professors_actions {

@@ -1,0 +1,42 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.comments{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 5px solid v.$accent-color;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__data{
+        margin: 0;
+        color: lighten(v.$black-color, 20%);
+        font-size: 1.7rem;
+    }
+
+    &__content{
+        margin: .8rem 0;
+    }
+
+    &__comment{
+        color: v.$accent-color;
+        font-size: 2.5rem;
+    }
+}
+
+.comment--subcomment{
+    @extend .comment;
+    border-left: 5px solid v.$secondary-color;
+    margin-left: 5rem;
+}
