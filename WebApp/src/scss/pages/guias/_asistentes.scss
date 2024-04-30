@@ -1,0 +1,50 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.assistants_actions{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    text-align: center;
+    flex-grow:1;
+}
+
+.assistants{
+    padding: 1rem 1rem 3rem 1rem;
+    @include m.shadow;
+    background-color: v.$white;
+    border-radius: 1rem;
+    margin: 2rem 2rem auto 2rem;
+    text-align: center;
+    
+
+    &_actions{
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        margin-top: 2rem;
+        &__type1{
+            @include m.button(v.$accent-color, v.$white);
+            width: 50rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        &__type2{
+            @include m.button(v.$primary-color, v.$white);
+            width: 50rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+    }
+
+    &__empty{
+        text-align: center;
+        font-size: 2rem;
+    }
+}

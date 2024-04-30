@@ -9,6 +9,8 @@ use Controllers\PagesController;
 use Controllers\Planscontroller;
 use Controllers\ProfessorsController; 
 use Controllers\StudentsController; 
+use Controllers\GuiasController; 
+
 
 $router = new Router();
 
@@ -45,6 +47,8 @@ $router->get('/plans/plan/activity', [Planscontroller::class, 'activity']);
 // Students routes
 $router->get('/professors', [ProfessorsController::class, 'index']);
 
+// Guias routes
+$router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
 
 
 // Run the router

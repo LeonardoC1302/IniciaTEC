@@ -2,7 +2,7 @@
     <section class="our-services">
         <h1 class="section__heading">Descubre <span>Nuestros Servicios</span></h1>
         <nav class="services-nav">
-            <a href="#" class="service service--guias">
+            <a href="/guias" class="service service--guias">
                 Guías
             </a>
             <a href="/professors" class="service service--profesores">
