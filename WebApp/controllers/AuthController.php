@@ -103,6 +103,37 @@ class AuthController {
     }
 
     public static function reset(Router $router){
-        $router->render('auth/reset');
+        $token = $_GET['token'];
+        $validToken = true;
+
+        if(!$token) header('Location: /');
+        $user = User::where('token', $token);
+
+        if(empty($user)){
+            User::setAlert('error', 'Token no válido, inténtalo de nuevo');
+            $validToken = false;
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $user->sync($_POST);
+            $alerts = $user->validatePassword();
+
+            if(empty($alerts)){
+                $user->hashPassword();
+                $user->token = null;
+                $result = $user->save();
+
+                if($result) {
+                    header('Location: /login');
+                }
+            }
+
+        }
+
+        $alerts = User::getAlerts();
+        $router->render('auth/reset', [
+            'alerts' => $alerts,
+            'validToken' => $validToken
+        ]);
     }
 }
