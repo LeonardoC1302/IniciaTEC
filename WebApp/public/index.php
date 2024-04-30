@@ -28,6 +28,9 @@ $router->post('/logout', [AuthController::class, 'logout']);
 $router->get('/recover', [AuthController::class, 'recover']);
 $router->post('/recover', [AuthController::class, 'recover']);
 
+$router->get('/reset', [AuthController::class, 'reset']);
+$router->post('/reset', [AuthController::class, 'reset']);
+
 $router->get('/message', [AuthController::class, 'message']);
 $router->get('/account', [AuthController::class, 'account']);
 

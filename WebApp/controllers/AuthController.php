@@ -101,4 +101,8 @@ class AuthController {
         }
        
     }
+
+    public static function reset(Router $router){
+        $router->render('auth/reset');
+    }
 }
