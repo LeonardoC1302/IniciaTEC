@@ -89,4 +89,12 @@ class StudentsController
         }
         header('Location: /students');
     }
+
+    public static function register(Router $router){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            debug($_FILES);
+        }
+
+        $router->render('students/register');
+    }
 }

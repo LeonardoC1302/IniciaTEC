@@ -1,6 +1,6 @@
 <div class="students_actions">
-    <a href="/register-student" class="students_actions__register">Registrar Estudiante</a>
-    <a href="/student-report" class="students_actions__report">Generar Reporte</a>
+    <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
+    <a href="/students/report" class="students_actions__report">Generar Reporte</a>
 </div>
 
 

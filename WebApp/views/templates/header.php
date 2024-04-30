@@ -6,7 +6,7 @@
 
         <nav class="header__nav">
             <a href="/" class="header__nav__link">Inicio</a>
-            <a href="#" class="header__nav__link">Equipo Guía</a>
+            <a href="/guias" class="header__nav__link">Equipo Guía</a>
             <a href="/professors" class="header__nav__link">Profesores</a>
             <a href="/students" class="header__nav__link">Estudiantes</a>
             <a href="/plans" class="header__nav__link">Planes</a>

@@ -774,6 +774,74 @@ h3 {
   cursor: pointer;
 }
 
+.register-student {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-grow: 1;
+}
+.register-student__title {
+  margin: 0;
+}
+.register-student__description {
+  margin: 0;
+}
+
+.register-form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  border: 2px dashed #2A2C41;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  height: 20rem;
+  width: 25rem;
+}
+.register-form__container--uploaded {
+  background-color: #838BE6;
+}
+.register-form i {
+  font-size: 6rem;
+  color: #2A2C41;
+}
+.register-form__label {
+  font-size: 1.8rem;
+  cursor: pointer;
+  font-weight: 400;
+}
+.register-form__input {
+  display: none;
+}
+.register-form__submit {
+  margin-top: 1rem;
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border-radius: 1rem;
+}
+.register-form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+.register-form__restriction {
+  font-size: 1.5rem;
+  color: #515442;
+  text-align: center;
+  margin: 1rem 0;
+}
+
 .plans {
   padding: 1rem 1rem 3rem 1rem;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
