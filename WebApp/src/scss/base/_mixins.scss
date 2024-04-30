@@ -81,7 +81,14 @@
 }
 
 @mixin shadow{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.5);
+    box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.5);
+
+    // box-shadow:  6px 6px 12px #868686,
+    //          -6px -6px 12px #ffffff;
 }
 
 @mixin reset-list{

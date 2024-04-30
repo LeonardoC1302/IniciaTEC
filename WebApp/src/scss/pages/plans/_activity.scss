@@ -20,18 +20,32 @@
         }
     }
 
+    &__card{
+        @include m.shadow;
+        padding: 2rem;
+        display: flex;
+        width: fit-content;
+        gap: 5rem
+    }
+
     &__info{
         @include m.grid(2, .5rem);
         column-gap: 5rem;
-        @include m.shadow;
         width: fit-content;
-        padding: 2rem;
         &__content{
             margin: .8rem 0;
             font-size: 1.7rem;
             span{
                 font-weight: v.$bold;
             }
+        }
+        &__edit{
+            font-weight: v.$bold;
+            color: v.$accent-color;
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+            gap: .5rem;
         }
     }
 

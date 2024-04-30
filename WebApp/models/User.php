@@ -4,7 +4,7 @@ namespace Model;
 
 class User extends ActiveRecord{
     protected static $table = 'usuario';
-    protected static $columnsDB = ['id', 'nombre', 'apellidos', 'correo', 'contrasenna', 'celular', 'campusId', 'roleId', 'estadoId'];
+    protected static $columnsDB = ['id', 'nombre', 'apellidos', 'correo', 'contrasenna', 'celular', 'campusId', 'roleId', 'estadoId', 'token'];
 
     public $id;
     public $nombre;
@@ -15,6 +15,7 @@ class User extends ActiveRecord{
     public $campusId;
     public $roleId;
     public $estadoId;
+    public $token;
 
     public function __construct($args = []){
         $this->id = $args['id'] ?? '';
@@ -26,6 +27,7 @@ class User extends ActiveRecord{
         $this->campusId = $args['campusId'] ?? '';
         $this->roleId = $args['roleId'] ?? '';
         $this->estadoId = $args['estadoId'] ?? '';
+        $this->token = $args['token'] ?? '';
     }
 
     public function validateLogin(){
@@ -41,7 +43,21 @@ class User extends ActiveRecord{
         return self::$alerts;
     }
 
+    public function validateEmail(){
+        if(!$this->correo){
+            self::setAlert('error', 'El correo es obligatorio');
+        } else if($this->correo && !filter_var($this->correo, FILTER_VALIDATE_EMAIL)){
+            self::setAlert('error', 'El correo no es válido');
+        }
+
+        return self::$alerts;
+    }
+
     public function hashPassword() : void {
         $this->contrasenna = password_hash($this->contrasenna, PASSWORD_BCRYPT);
+    }
+
+    public function createToken() : void {
+        $this->token = uniqid();
     }
 }

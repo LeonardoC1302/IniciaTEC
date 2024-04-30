@@ -670,7 +670,9 @@ h3 {
 
 .students {
   padding: 1rem 1rem 3rem 1rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   background-color: #FFFFFF;
   padding: 2rem;
   border-radius: 1rem;
@@ -774,7 +776,9 @@ h3 {
 
 .plans {
   padding: 1rem 1rem 3rem 1rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   background-color: #FFFFFF;
   padding: 2rem;
   border-radius: 1rem;
@@ -847,7 +851,9 @@ h3 {
 .activityCard {
   padding: 2rem;
   border-radius: 2rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
 }
 .activityCard__container {
   display: flex;
@@ -898,14 +904,21 @@ h3 {
   color: #838BE6;
   font-weight: 700;
 }
+.activity__card {
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  display: flex;
+  width: fit-content;
+  gap: 5rem;
+}
 .activity__info {
   display: grid;
   gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 5rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   width: fit-content;
-  padding: 2rem;
 }
 .activity__info__content {
   margin: 0.8rem 0;
@@ -913,6 +926,14 @@ h3 {
 }
 .activity__info__content span {
   font-weight: 700;
+}
+.activity__info__edit {
+  font-weight: 700;
+  color: #4D5AE6;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  gap: 0.5rem;
 }
 .activity__comments {
   margin-top: 4rem;
@@ -935,7 +956,9 @@ h3 {
 
 .professors {
   padding: 1rem 1rem 3rem 1rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   background-color: #FFFFFF;
   padding: 2rem;
   border-radius: 1rem;
@@ -1047,7 +1070,9 @@ h3 {
 
 .assistants {
   padding: 1rem 1rem 3rem 1rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   background-color: #FFFFFF;
   border-radius: 1rem;
   margin: 2rem 2rem auto 2rem;

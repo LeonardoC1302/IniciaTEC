@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use Classes\Email;
 use Model\Role;
 use Model\User;
 use MVC\Router;
@@ -41,7 +42,30 @@ class AuthController {
     }
 
     public static function recover(Router $router){
-        $router->render('auth/recover');
+        $alerts = [];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $user = new User($_POST);
+            $alerts = $user->validateEmail();
+
+            if(empty($alerts)){
+                $user = User::where('correo', $user->correo);
+                if($user){
+                    $user->createToken();
+                    $user->save();
+
+                    $email = new Email($user->correo, $user->nombre, $user->token);
+                    $email->sendInstructions();
+                    header('Location: /message');
+                } else{
+                    $alerts['error'][] = 'El usuario no existe';
+                }
+            }
+        }
+
+        $router->render('auth/recover', [
+            'alerts' => $alerts
+        ]);
     }
 
     public static function message(Router $router){
