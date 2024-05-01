@@ -4,7 +4,7 @@
 
 <div class="register-student">
     <h1 class="register-student__title">Registrar estudiante</h1>
-    <p class="register-student__description">Ingrese un documento de excel con los datos del estudiante en el siguiente formulario</p>
+    <p class="register-student__description">Ingrese un documento CSV con los datos del estudiante en el siguiente formulario</p>
 
     <form method="POST" enctype="multipart/form-data" class="register-form" id="register">
         <div class="register-form__container" id="registerContainer">
@@ -14,7 +14,7 @@
         </div>
         <input type="submit" class="register-form__submit" value="Registrar">
 
-        <p class="register-form__restriction">Únicamente archivos de Excel</p>
+        <p class="register-form__restriction">Únicamente archivos CSV</p>
     </form>
 
 </div>

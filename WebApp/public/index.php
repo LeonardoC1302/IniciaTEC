@@ -53,6 +53,10 @@ $router->get('/plans/plan/activity', [Planscontroller::class, 'activity']);
 // Students routes
 $router->get('/professors', [ProfessorsController::class, 'index']);
 
+$router->get('/professors/register', [ProfessorsController::class, 'register']);
+$router->post('/professors/register', [ProfessorsController::class, 'register']);
+
+
 // Guias routes
 $router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
 
