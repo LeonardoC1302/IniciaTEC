@@ -1,0 +1,38 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+h1 {
+    text-align: center;
+}
+
+$bold: bold; 
+
+.create-form {
+    width: min(95%, 80rem);
+    margin: auto auto 5rem auto;
+
+    .form {
+        display: flex;
+        justify-content: space-between; // Distribute space between columns
+        flex-wrap: wrap;
+    }
+
+    .form__field {
+        width: calc(50% - 2rem); // Adjust width to create a gap between columns
+        margin-bottom: 3rem; // Add bottom margin between form fields
+
+        input, select, textarea {
+            font-size: 2rem; // Adjust font size of text and text fields
+            width: 100%; // Ensure inputs and textareas occupy full width of their container
+            padding: 1rem; // Add padding to inputs and textareas
+            border-radius: 0.5rem; // Add border radius to inputs and textareas
+        }
+    }
+}
+
+.button-container{
+    text-align: center;
+    padding: 10px 20px; /* Increase padding to make the button bigger */
+    font-size: 1.2rem;
+}
+
