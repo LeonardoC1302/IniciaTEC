@@ -11,8 +11,8 @@ class Student extends ActiveRecord{
     public $carnet;
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? '';
-        $this->usuarioId = $args['usuarioId'] ?? '';
+        $this->id = $args['id'] ?? null;
+        $this->usuarioId = $args['usuarioId'] ?? null;
         $this->carnet = $args['carnet'] ?? '';
     }
 

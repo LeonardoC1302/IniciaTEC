@@ -14,11 +14,11 @@ class Comment extends ActiveRecord{
     public $profesorId;
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->contenido = $args['contenido'] ?? '';
         $this->fecha = $args['fecha'] ?? '';
-        $this->actividadId = $args['actividadId'] ?? '';
-        $this->comentarioId = $args['comentarioId'] ?? '';
-        $this->profesorId = $args['profesorId'] ?? '';
+        $this->actividadId = $args['actividadId'] ?? null;
+        $this->comentarioId = $args['comentarioId'] ?? null;
+        $this->profesorId = $args['profesorId'] ?? null;
     }
 }

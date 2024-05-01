@@ -2,9 +2,12 @@
 
 namespace Controllers;
 
+use Classes\ExcelManager;
 use Model\Campus;
+use Model\Role;
 use Model\Student;
 use Model\User;
+use Model\UserStatus;
 use MVC\Router;
 
 class StudentsController
@@ -91,11 +94,58 @@ class StudentsController
     }
 
     public static function register(Router $router){
+        $alerts = [];
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            debug($_FILES);
-            
+            $file = $_FILES['file']['tmp_name'];
+            $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+            $manager = new ExcelManager($file, $extension);
+            $records = $manager->getRecords();
+
+            if(!$records){
+                $alerts['error'][] = 'Archivo no válido';
+            } else {
+                foreach($records as $record){
+                    // LowerCase all Keys
+                    $record = array_change_key_case($record, CASE_LOWER);
+
+                    // Get the campusId
+                    $campus = Campus::where('nombre', $record['campus']);
+                    $record['campusId'] = $campus->id;
+
+
+                    // Get the roleId
+                    $rol = Role::where('nombre', 'Estudiante');
+                    $record['roleId'] = $rol->id;
+
+                    // Get the estadoId
+                    $estado = UserStatus::where('nombre', 'Activo');
+                    $record['estadoId'] = $estado->id;
+
+                    // Create the user
+                    $user = new User($record);
+                    $user->id = null;
+                    $alerts = $user->validateRegister();
+
+                    if(empty($alerts)){
+                        $user->hashPassword();
+                        $result = $user->save();
+
+                        // Create the student
+                        $student = new Student([
+                            'usuarioId' => $result['id'],
+                            'carnet' => $record['carnet']
+                        ]);
+                        $student->save();
+                    }
+                }
+                $alerts['success'][] = 'Estudiantes registrados correctamente';
+            }
         }
 
-        $router->render('students/register');
+        $router->render('students/register', [
+            'alerts' => $alerts
+        ]);
     }
 }

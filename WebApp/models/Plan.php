@@ -11,7 +11,7 @@ class Plan extends ActiveRecord{
     public $descripcion;
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
         $this->descripcion = $args['descripcion'] ?? '';
     }

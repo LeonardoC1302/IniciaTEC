@@ -10,7 +10,7 @@ class Campus extends ActiveRecord{
     public $nombre;
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
     }
 }

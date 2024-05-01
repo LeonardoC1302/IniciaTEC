@@ -14,8 +14,8 @@ class Professor extends ActiveRecord{
     public $isCoordinador;
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? '';
-        $this->usuarioId = $args['usuarioId'] ?? '';
+        $this->id = $args['id'] ?? null;
+        $this->usuarioId = $args['usuarioId'] ?? null;
         $this->codigo = $args['codigo'] ?? '';
         $this->telefono = $args['telefono'] ?? '';
         $this->foto = $args['foto'] ?? '';

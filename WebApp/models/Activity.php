@@ -27,18 +27,18 @@ class Activity extends ActiveRecord{
     ];
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->nombre = $args['nombre'] ?? '';
         $this->fecha = $args['fecha'] ?? '';
         $this->semana = $args['semana'] ?? '';
         $this->descripcion = $args['descripcion'] ?? '';
-        $this->tipoId = $args['tipoId'] ?? '';
-        $this->responsableId = $args['responsableId'] ?? '';
+        $this->tipoId = $args['tipoId'] ?? null;
+        $this->responsableId = $args['responsableId'] ?? null;
         $this->fechaPublicacion = $args['fechaPublicacion'] ?? '';
         $this->modalidad = $args['modalidad'] ?? '';
         $this->enlace = $args['enlace'] ?? '';
         $this->afiche = $args['afiche'] ?? '';
-        $this->estadoId = $args['estadoId'] ?? '';
-        $this->planId = $args['planId'] ?? '';
+        $this->estadoId = $args['estadoId'] ?? null;
+        $this->planId = $args['planId'] ?? null;
     }
 }

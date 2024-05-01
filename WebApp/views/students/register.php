@@ -1,3 +1,7 @@
+<?php
+    include_once __DIR__ . "/../templates/alerts.php";
+?>
+
 <div class="register-student">
     <h1 class="register-student__title">Registrar estudiante</h1>
     <p class="register-student__description">Ingrese un documento de excel con los datos del estudiante en el siguiente formulario</p>

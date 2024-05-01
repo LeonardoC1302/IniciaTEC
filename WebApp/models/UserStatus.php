@@ -2,8 +2,8 @@
 
 namespace Model;
 
-class ActivityType extends ActiveRecord{
-    protected static $table = 'tipoactividad';
+class UserStatus extends ActiveRecord{
+    protected static $table = 'estadousuario';
     protected static $columnsDB = ['id', 'nombre'];
 
     public $id;
