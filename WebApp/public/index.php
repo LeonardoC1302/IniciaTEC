@@ -62,6 +62,9 @@ $router->post('/professors/register', [ProfessorsController::class, 'register'])
 
 // Guias routes
 $router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
+$router->get('/guias/asignar/asistente', [GuiasController::class, 'asignarAsistente']);
+$router->post('/guias/asignar/asistente', [GuiasController::class, 'update']);
+
 
 
 // Run the router

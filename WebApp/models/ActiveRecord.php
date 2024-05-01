@@ -27,7 +27,7 @@ class ActiveRecord {
 
     public static function querySQL($query) {
         $result = self::$db->query($query);
-
+    
         $array = [];
         while($register = $result->fetch_assoc()) {
             $array[] = static::createObject($register);
@@ -197,6 +197,14 @@ class ActiveRecord {
         $count = $result->fetch_array();
         return array_shift($count);
     }
+    public static function join($Query)
+    {
+        $query = $Query;
+        $result = self::$db->query($query);
+        return $result;
+    }
+    
+    
 
     public static function totalArray($array = []) {
         $query = "SELECT COUNT(*) FROM " . static::$table . " WHERE ";
@@ -210,6 +218,9 @@ class ActiveRecord {
         $result = self::$db->query($query);
         $count = $result->fetch_array();
         return array_shift($count);
+    }
+    public static function update2($query) {
+        $result = self::$db->query($query);
     }
 
     public static function paginate($per_page, $offset){
