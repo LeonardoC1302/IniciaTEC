@@ -27,7 +27,7 @@ class ActiveRecord {
 
     public static function querySQL($query) {
         $result = self::$db->query($query);
-
+    
         $array = [];
         while($register = $result->fetch_assoc()) {
             $array[] = static::createObject($register);
@@ -201,7 +201,7 @@ class ActiveRecord {
     {
         $query = $Query;
         $result = self::$db->query($query);
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result;
     }
     
     
@@ -218,6 +218,9 @@ class ActiveRecord {
         $result = self::$db->query($query);
         $count = $result->fetch_array();
         return array_shift($count);
+    }
+    public static function update2($query) {
+        $result = self::$db->query($query);
     }
 
     public static function paginate($per_page, $offset){
