@@ -30,4 +30,12 @@ class ProfessorsController
             'professors' => $professors
         ]);
     }
+
+    public static function register(Router $router)
+    {
+        $campus = Campus::all();
+
+        $router->render('professors/register', [
+        ]);
+    }
 }
