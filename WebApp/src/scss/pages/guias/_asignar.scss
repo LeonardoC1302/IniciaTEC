@@ -1,0 +1,59 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.asignar_actions{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    text-align: center;
+    flex-grow:1;
+}
+
+.asignar{
+    padding: 1rem 1rem 3rem 1rem;
+    @include m.shadow;
+    background-color: v.$white;
+    border-radius: 1rem;
+    margin: 2rem 2rem auto 2rem;
+    text-align: center;
+    
+
+    &_actions{
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        margin-top: 2rem;
+        &__select{
+            margin-bottom: 20px;
+            select {
+                width: 300px; // Ancho del campo de selección
+                padding: 10px;
+                border-radius: 15px;
+                border: 1px solid #D9D9D9;
+                outline: none;
+                font-size: 16px;
+                background-color: #D9D9D9;
+                color: #978E8E;
+                    }
+                }
+ 
+    }
+
+    &__empty{
+        text-align: center;
+        font-size: 2rem;
+    }
+}
+.submit-button {
+    padding: 10px 20px;
+    margin-top: 2rem;
+    background-color: v.$accent-color;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    &:hover {
+      background-color: v.$accent-color;
+    }
+}

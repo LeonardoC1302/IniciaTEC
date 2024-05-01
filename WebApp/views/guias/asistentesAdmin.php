@@ -1,7 +1,7 @@
 <main class="assistants_actions">
     <div class="asistentes">
         <h1 class="section__heading"><span>Asistentes Administrativas</span></h1>
-        <a href="/asignarAsistente" class="assistants_actions__type1">Asignar Asistente Administrativo por Campus </a>
+        <a href="guias/asignar/asistente" class="assistants_actions__type1">Asignar Asistente Administrativo por Campus </a>
         <br>
         <a href="/registrarProfesor" class="assistants_actions__type2">Registrar Profesor</a>
         <br>

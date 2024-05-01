@@ -197,6 +197,14 @@ class ActiveRecord {
         $count = $result->fetch_array();
         return array_shift($count);
     }
+    public static function join($Query)
+    {
+        $query = $Query;
+        $result = self::$db->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    
 
     public static function totalArray($array = []) {
         $query = "SELECT COUNT(*) FROM " . static::$table . " WHERE ";
