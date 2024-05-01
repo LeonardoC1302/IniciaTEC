@@ -6,7 +6,7 @@
         <div class="register-form__container" id="registerContainer">
             <i class="fa-solid fa-file-import"></i>
             <label for="file" class="register-form__label" id="fileLabel">Click para subir archivo</label>
-            <input type="file" class="register-form__input" id="file" accept=".xlsx,.xls" name="file">
+            <input type="file" class="register-form__input" id="file" accept=".csv" name="file">
         </div>
         <input type="submit" class="register-form__submit" value="Registrar">
 
