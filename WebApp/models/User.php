@@ -98,4 +98,8 @@ class User extends ActiveRecord{
 
         return self::$alerts;
     }
+
+    public function generatePassword(){
+        $this->contrasenna = uniqid();
+    }
 }

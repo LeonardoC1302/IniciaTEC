@@ -1078,34 +1078,66 @@ h3 {
   font-size: 2rem;
 }
 
-h1 {
-  text-align: center;
-}
-
-.create-form {
-  width: min(95%, 80rem);
-  margin: auto auto 5rem auto;
-}
-.create-form .form {
+.create-student {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: min(95%, 140rem);
+  margin: 0 auto;
 }
-.create-form .form__field {
-  width: calc(50% - 2rem);
-  margin-bottom: 3rem;
+.create-student__form {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
 }
-.create-form .form__field input, .create-form .form__field select, .create-form .form__field textarea {
+.create-student__form__field {
+  display: flex;
+  flex-direction: column;
+}
+.create-student__form__label {
+  margin-bottom: 0.2rem;
+  font-size: 1.7rem;
+  color: #515442;
+}
+.create-student__form__input {
+  width: 30rem;
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
   font-size: 2rem;
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.5rem;
 }
-
-.button-container {
+.create-student__form__input:focus {
+  outline: none;
+}
+.create-student__form__button-container {
+  display: flex;
+  justify-content: center;
+}
+.create-student__form__input--photo {
+  color: #4D5AE6;
+}
+.create-student__form__select {
+  background-color: #FFFFFF;
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
+}
+.create-student__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
   text-align: center;
-  padding: 10px 20px; /* Increase padding to make the button bigger */
-  font-size: 1.2rem;
+  width: 100%;
+  display: inline-block;
+  grid-column: span 2;
+}
+.create-student__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
 }
 
 .edit_professors {
