@@ -9,7 +9,6 @@
         fileInput.addEventListener('change', handleFileUpload);
 
         function handleFileUpload(){
-            console.log("LLEGA");
             if (fileInput.files.length > 0) {
                 registerContainer.classList.add('register-form__container--uploaded');
 

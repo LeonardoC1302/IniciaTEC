@@ -842,6 +842,65 @@ h3 {
   margin: 1rem 0;
 }
 
+.report {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.report__form {
+  padding: 3rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 0.1rem solid #2A2C41;
+}
+.report__form__label {
+  margin-bottom: 0.2rem;
+  font-size: 2rem;
+  color: #1a1b15;
+  font-weight: 700;
+}
+.report__form__container {
+  border: 0.1rem dashed #2A2C41;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.report__form__container--disabled {
+  display: none;
+}
+.report__form__options {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.report__form__options__option {
+  display: flex;
+  gap: 0.5rem;
+}
+.report__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  margin-top: 1rem;
+}
+.report__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+
 .plans {
   padding: 1rem 1rem 3rem 1rem;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);

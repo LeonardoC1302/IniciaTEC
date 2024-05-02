@@ -1,0 +1,57 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.report{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__form{
+        padding: 3rem;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: .1rem solid v.$primary-color;
+        &__label{
+            margin-bottom: .2rem;
+            font-size: 2rem;
+            color: v.$black-color;
+            font-weight: v.$bold;
+        }
+
+        &__container{
+            border: .1rem dashed v.$primary-color;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            &--disabled{
+                display: none;
+            }
+        }
+
+        &__radio{
+            
+        }
+
+        &__select{
+
+        }
+
+        &__options{
+            display:flex;
+            padding: 1rem;
+            justify-content: space-between;
+            &__option{
+                display: flex;
+                gap: .5rem;
+            }
+            gap: 1rem;
+        }
+        &__submit{
+            @include m.button(v.$accent-color, v.$white);
+            margin-top: 1rem;
+        }
+    }
+}

@@ -10,7 +10,7 @@
     ?>
     <h1 class="student__title">Editar Estudiante</h1>
 
-    <form method="POSt" class="edit_student__form">
+    <form method="POST" class="edit_student__form">
         <div class="edit_student__form__field">
             <label for="nombre" class="edit_student__form__label">Nombre</label>
             <input type="text" id="nombre" name="nombre" class="edit_student__form__input" value=<?php echo $student->nombre; ?>>

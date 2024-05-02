@@ -45,6 +45,9 @@ $router->post('/students/update', [StudentsController::class, 'update']);
 
 $router->post('/students/delete', [StudentsController::class, 'delete']);
 
+$router->get('/students/report', [StudentsController::class, 'report']);
+$router->post('/students/report', [StudentsController::class, 'report']);
+
 // Activities routes
 $router->get('/plans', [Planscontroller::class, 'index']);
 
