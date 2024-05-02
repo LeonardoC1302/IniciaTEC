@@ -65,6 +65,8 @@ $router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
 $router->get('/guias/asignar/asistente', [GuiasController::class, 'asignarAsistente']);
 $router->post('/guias/asignar/asistente', [GuiasController::class, 'update']);
 $router->get('/guias/crear/equipo', [GuiasController::class, 'crearEquipo']);
+$router->post('/guias/crear/equipo', [GuiasController::class, 'createTeam']);
+
 
 
 

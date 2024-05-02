@@ -1311,6 +1311,7 @@ h3 {
 }
 
 .submit-button {
+  align-items: center;
   padding: 10px 20px;
   margin-top: 2rem;
   background-color: #4D5AE6;
