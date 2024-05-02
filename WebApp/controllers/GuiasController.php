@@ -6,6 +6,7 @@ use Model\Campus;
 use Model\Asistentes;   
 use Model\User; 
 use Model\Professor; 
+use Model\Team;
 use MVC\Router;  
 
 
@@ -65,6 +66,7 @@ class GuiasController {
         $alerts = [];
         $professors = Professor::all();
         $selectedProfessors = $_POST['professors'] ?? [];
+        $anno = $_POST['years'] ?? [];
         
     
         if (count($selectedProfessors) !== 5) {
@@ -90,6 +92,7 @@ class GuiasController {
                 $profesorId->coordinador = $profesorId->isCoordinador ? 'Sí' : 'No';
                 $profesorId->id = $profesorId->id;
 
+                
                 if ($profesorId && $profesorId->coordinador === 'Sí') {
                     $coordinatorCount++;
                 }
@@ -109,14 +112,45 @@ class GuiasController {
                     $LI++;
                 }
             }
-            if ($AL|$CA|$SJ|$SC|$LI !== 1){
+            if ($anno < 2010) {
+                Professor::setAlert('error', 'Debe seleccionar un año');
+            }
+
+            else if ($AL !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($CA !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($SJ !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($SC !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($LI !== 1){
                 Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
             }
             else if ($coordinatorCount !== 1) {
                 Professor::setAlert('error', 'Debe seleccionar exactamente 1 coordinador.');
             } else {
-                Professor::setAlert('success', 'Grupo creado exitosamente.');
-            }
+                $nombreEquipo =  "Equipo Guía Primer Ingreso " . $anno; 
+                $query = "INSERT INTO equipo (nombre) VALUES ('$nombreEquipo')";
+                $equipo = Team::find2($nombreEquipo);
+                if($equipo && $equipo->num_rows > 0){
+                    Professor::setAlert('error', 'Ya existe un equipo para esta Generación');
+                }
+                else{
+                    Team::update2($query);
+                    foreach ($selectedProfessors as $professorId) {
+                        $equipo = Team::find2($nombreEquipo);
+                        $resultado = $equipo->fetch_assoc()['id'];
+                        $query = "INSERT INTO profesorxequipo (profesorId, equipoId) VALUES ($professorId, $resultado)";
+                        Team::update2($query);
+                    }
+                    Professor::setAlert('success', 'Grupo creado exitosamente.');
+                }
+        }
         }
     
         $alerts = Professor::getalerts();

@@ -17,6 +17,8 @@ class Professor extends ActiveRecord{
     public $correo;
     public $celular;
     public $coordinador;
+    public $campusId;
+
 
     public function __construct($args = []){
         $this->id = $args['id'] ?? null;
