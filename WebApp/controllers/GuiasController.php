@@ -41,6 +41,7 @@ class GuiasController {
     }
     public static function crearEquipo(Router $router)
     {
+        $alerts = [];
         $professors = Professor::all();
 
         foreach ($professors as $professor) {
@@ -54,12 +55,14 @@ class GuiasController {
             $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
             $professor->id = $professor->id;
         }
-
+        $alerts = Professor::getalerts();
         $router->render('guias/crearEquipo', [
+            'alerts' => $alerts,
             'professors' => $professors
         ]);
     }
     public static function createTeam(Router $router) {
+        $alerts = [];
         $professors = Professor::all();
         $selectedProfessors = $_POST['professors'] ?? [];
         
@@ -128,8 +131,6 @@ class GuiasController {
             $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
             $professor->id = $professor->id;
         }
-        
-        // Pasar todos los profesores disponibles a la vista
         $router->render('guias/crearEquipo',[
             'alerts' => $alerts,
             'professors' => $professors

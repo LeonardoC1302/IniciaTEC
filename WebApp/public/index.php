@@ -72,3 +72,5 @@ $router->post('/guias/crear/equipo', [GuiasController::class, 'createTeam']);
 
 // Run the router
 $router->checkRoutes();
+
+
