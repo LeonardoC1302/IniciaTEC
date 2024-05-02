@@ -1078,6 +1078,11 @@ h3 {
   font-size: 2rem;
 }
 
+.select-all {
+  text-align: right; /* Alinea el checkbox "Seleccionar Todos" a la derecha */
+  margin-top: 10px; /* Espacio superior para separar del contenido de la tabla */
+}
+
 .create-student {
   display: flex;
   flex-direction: column;
@@ -1285,7 +1290,7 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 .asignar_actions__select {
   margin-bottom: 20px;

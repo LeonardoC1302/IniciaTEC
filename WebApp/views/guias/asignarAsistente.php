@@ -22,11 +22,15 @@ foreach ($asistentes_list as $asistente) {
         <h1 class="section__heading"><span>Asignar Asistentes Administrativas por Campus</span></h1>
         <form method="post" action="/guias/asignar/asistente">
             <div class="asignar_actions__select">
+                <label >Asistentes Disponibles</label>
+                <br>
                 <select name="asistente" id="asistente">
                     <?php echo $asistentes_options; ?>
                 </select>
             </div>
             <div class="asignar_actions__select">
+                <label >Campus</label>
+                <br>
                 <select name="campus" id="campus">
                     <?php echo $campus_options; ?>
                 </select>

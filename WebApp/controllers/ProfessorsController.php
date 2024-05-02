@@ -26,6 +26,7 @@ class ProfessorsController
             $professor->celular = $user->celular;
 
             $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
         }
 
         $router->render('professors/index', [

@@ -64,6 +64,7 @@ $router->post('/professors/register', [ProfessorsController::class, 'register'])
 $router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
 $router->get('/guias/asignar/asistente', [GuiasController::class, 'asignarAsistente']);
 $router->post('/guias/asignar/asistente', [GuiasController::class, 'update']);
+$router->get('/guias/crear/equipo', [GuiasController::class, 'crearEquipo']);
 
 
 

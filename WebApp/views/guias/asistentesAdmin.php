@@ -3,9 +3,9 @@
         <h1 class="section__heading"><span>Asistentes Administrativas</span></h1>
         <a href="guias/asignar/asistente" class="assistants_actions__type1">Asignar Asistente Administrativo por Campus </a>
         <br>
-        <a href="/registrarProfesor" class="assistants_actions__type2">Registrar Profesor</a>
+        <a href="/professors/register" class="assistants_actions__type2">Registrar Profesor</a>
         <br>
-        <a href="/crearEquipo" class="assistants_actions__type1">Crear Equipo de Trabajo</a>
+        <a href="guias/crear/equipo" class="assistants_actions__type1">Crear Equipo de Trabajo</a>
         <br>
         <a href="/verEliminar" class="assistants_actions__type2">Ver y Eliminar Equipo de Trabajo</a>
            

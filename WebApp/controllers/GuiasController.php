@@ -5,6 +5,7 @@ namespace Controllers;
 use Model\Campus;   
 use Model\Asistentes;   
 use Model\User; 
+use Model\Professor; 
 use MVC\Router;  
 
 
@@ -37,6 +38,26 @@ class GuiasController {
                 echo "El campus seleccionado no fue encontrado.";
             }
         }
+    }
+    public static function crearEquipo(Router $router)
+    {
+        $professors = Professor::all();
+
+        foreach ($professors as $professor) {
+            $user = User::find($professor->usuarioId);
+
+            $professor->nombre = $user->nombre;
+            $professor->apellidos = $user->apellidos;
+            $professor->correo = $user->correo;
+            $professor->celular = $user->celular;
+
+            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
+        }
+
+        $router->render('guias/crearEquipo', [
+            'professors' => $professors
+        ]);
     }
     
     
