@@ -94,6 +94,11 @@ class ActiveRecord {
         $result = self::querySQL($query);
         return array_shift( $result ) ;
     }
+    public static function find2($nombre) {
+        $query = "SELECT id FROM " . static::$table  ." WHERE nombre = '$nombre'";
+        $result = self::$db->query($query);
+        return ( $result ) ;
+    }
 
     public static function get($limit) {
         $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT $limit" ;
