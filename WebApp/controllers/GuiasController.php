@@ -13,8 +13,72 @@ use MVC\Router;
 
 class GuiasController {
 
+    public static function agregarProfesor(Router $router){
+        $alerts = [];
+        $equipoId = $_GET['equipoId'] ?? null;
+        $selectedProfessors = ProfessorXTeam::all();
+        
+        if (count($selectedProfessors) !== 5) {
+            Professor::setAlert('error', 'Debe seleccionar exactamente 5 profesores.');
+        }
+
+
+        $equipo = $_GET['id'] ?? null;
+        $equipoId = Team::find2($equipo);
+    
+        $resultado = $equipoId->fetch_assoc()['id'];
+
+
+        $profesores = ProfessorXTeam::all1();
+        
+
+        foreach($profesores as $profesor){
+            $professor = Professor::find($profesor->profesorId);
+            $user = User::find($professor->usuarioId);
+            $professor->nombre = $user->nombre;
+            $professor->apellidos = $user->apellidos;
+            $professor->correo = $user->correo;
+            $professor->celular = $user->celular;
+
+            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
+            $professors[] = $professor;
+            
+            }
+        $router->render('guias/editar', [
+            'professors' => $professors,
+            'equipoId' => $resultado
+        ]);
+
+    }
     public static function editarEquipo(Router $router){
-        $router->render('guias/editar');
+        $equipo = $_GET['id'] ?? null;
+        $equipoId = Team::find2($equipo);
+    
+        $resultado = $equipoId->fetch_assoc()['id'];
+
+
+        $profesores = ProfessorXTeam::all1($resultado);
+        
+
+        foreach($profesores as $profesor){
+            $professor = Professor::find($profesor->profesorId);
+            $user = User::find($professor->usuarioId);
+            $professor->nombre = $user->nombre;
+            $professor->apellidos = $user->apellidos;
+            $professor->correo = $user->correo;
+            $professor->celular = $user->celular;
+
+            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
+            $professors[] = $professor;
+            
+            }
+        $router->render('guias/editar', [
+            'professors' => $professors,
+            'equipoId' => $resultado
+        ]);
+
     }
     public static function asistentesAdmin(Router $router){
         $router->render('guias/asistentesAdmin');
@@ -63,13 +127,14 @@ class GuiasController {
     public static function deleteTeam(Router $router){
     
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $team_id = $_POST["id"];
+            $profe_id = $_POST["id"];
+            $equipo_id = $_POST["equipo"];
         
-            if ($team_id) {
+            if ($profe_id) {
                 
-                $query = "DELETE FROM equipo WHERE id = $team_id";
+                $query = "DELETE FROM profesorxequipo WHERE profesorId = $profe_id AND equipoID = $equipo_id";
                 Team::update2($query);
-                header('Location: /ver/eliminar/equipo');
+                header('Location: /editar/equipo/trabajo');
 
             } else {
                 // Manejar el caso en el que no se encuentre el campus
@@ -214,7 +279,7 @@ class GuiasController {
         $resultado = $equipoId->fetch_assoc()['id'];
 
 
-        $profesores = ProfessorXTeam::all();
+        $profesores = ProfessorXTeam::all1($resultado);
         
 
         foreach($profesores as $profesor){

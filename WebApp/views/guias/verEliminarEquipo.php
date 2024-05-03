@@ -5,13 +5,9 @@
 </a><?php
     include_once __DIR__ . "/../templates/alerts.php";
 ?>
-<div class="assistants_actions">
-    <div class = "asistentes">
-    <h1 class="section__heading"><span>Ver Equipo de Trabajo</span></h1>
-</div>
-</div>
 
 <div class="detalle">   
+<h1 class="section__heading"><span>Ver Equipo de Trabajo</span></h1>
 <?php if(!empty($equipos)){ ?>
         <table class="table">
             <thead class="table__thead">
@@ -35,7 +31,7 @@
                             </a>
                         </td>
                          <td class="table__td">
-                            <a href="/editar/equipo/trabajo?id=<?php echo $equipo->nombre;?>" class="activity__info__edit">
+                            <a href="/editar/equipo/trabajo?id=<?php echo $equipo->nombre;?>" class="activityCard__view">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 Editar Equipo
                             </a>

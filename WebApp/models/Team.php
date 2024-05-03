@@ -12,8 +12,8 @@ class Team extends ActiveRecord{
 
     public function __construct($args = []){
         $this->id = $args['id'] ?? null;
-        $this->nombre =$arg['nombre'] ?? NULL;
-        $this->planId = $args['planId'];
+        $this->nombre =$arg['nombre'] ?? null;
+        $this->planId = isset($args['planId']) ? $args['planId'] : null;
     }
 
 }

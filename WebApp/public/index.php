@@ -80,6 +80,7 @@ $router->get('/ver/eliminar/equipo', [GuiasController::class, 'verEliminarEquipo
 $router->post('/team/delete', [GuiasController::class, 'deleteTeam']);
 $router->get('/ver/equipo/trabajo', [GuiasController::class, 'verEquipo']);
 $router->get('/editar/equipo/trabajo', [GuiasController::class, 'editarEquipo']);
+$router->get('/agregar/profesor', [GuiasController::class, 'editarEquipo']);
 
 
 

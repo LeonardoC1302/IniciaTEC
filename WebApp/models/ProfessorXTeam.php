@@ -13,8 +13,8 @@ class ProfessorXTeam extends ActiveRecord{
         $this->profesorId = $args['profesorId'] ?? null;
         $this->equipoId =$arg['equipoId'] ?? NULL;
     }
-    public static function all($order = 'DESC') {
-        $query = "SELECT * FROM " . static::$table . " ORDER BY profesorId $order";
+    public static function all1($equipoId) {
+        $query = "SELECT * FROM " . static::$table . " WHERE equipoId = $equipoId ORDER BY profesorId DESC";
         $result = self::querySQL($query);
         return $result;
     }
