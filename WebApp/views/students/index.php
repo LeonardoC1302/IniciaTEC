@@ -1,3 +1,8 @@
+<a href="/" class="volver">
+    <i class="fa-solid fa-circle-left"></i>
+    Volver
+</a>
+
 <div class="students_actions">
     <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
     <a href="/students/report" class="students_actions__report">Generar Reporte</a>

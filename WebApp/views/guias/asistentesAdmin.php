@@ -1,3 +1,8 @@
+<a href="/" class="volver">
+    <i class="fa-solid fa-circle-left"></i>
+    Volver
+</a>
+
 <main class="assistants_actions">
     <div class="asistentes">
         <h1 class="section__heading"><span>Asistentes Administrativas</span></h1>

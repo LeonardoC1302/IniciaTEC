@@ -1,3 +1,8 @@
+<a href="/" class="volver">
+    <i class="fa-solid fa-circle-left"></i>
+    Volver
+</a>
+
 <div class="plans__actions">
     <a href="/plans/create" class="plans__actions__create">Crear Plan de Trabajo</a>
 </div>

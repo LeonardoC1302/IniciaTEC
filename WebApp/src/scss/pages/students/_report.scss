@@ -13,15 +13,18 @@
         justify-content: center;
         flex-direction: column;
         border: .1rem solid v.$primary-color;
+        border-radius: 1rem;
         &__label{
             margin-bottom: .2rem;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: v.$black-color;
             font-weight: v.$bold;
+            padding: 1rem;
         }
 
         &__container{
             border: .1rem dashed v.$primary-color;
+            border-radius: .5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -32,11 +35,11 @@
         }
 
         &__radio{
-            
+            display: inline;
         }
 
         &__select{
-
+            padding: 1rem;
         }
 
         &__options{
@@ -45,13 +48,24 @@
             justify-content: space-between;
             &__option{
                 display: flex;
-                gap: .5rem;
+                gap: .6rem;
+                width: 11rem;
+                height: 6rem;
+                padding-top: 1rem;
+                padding-left: .5rem;
+                padding-right: .4rem;
+                &--active{
+                    background-color: rgb(218, 243, 252);
+                    box-shadow: 2px 2px 4px v.$primary-color;
+                    border-radius: .3rem;
+                }
             }
-            gap: 1rem;
+            gap: 3.5rem;
         }
         &__submit{
             @include m.button(v.$accent-color, v.$white);
-            margin-top: 1rem;
+            margin-top: 2.5rem;
+            border-radius: .6rem;
         }
     }
 }

@@ -1,3 +1,8 @@
+<a href="/" class="volver">
+    <i class="fa-solid fa-circle-left"></i>
+    Volver
+</a>
+
 <div class="professors_actions">
     <a href="/professors/register" class="professors_actions__register">Registrar Profesor</a>
     <a href="/professor/coordinator" class="professors_actions__coordinator">Dar Rol Coordinador</a>

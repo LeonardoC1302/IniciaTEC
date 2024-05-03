@@ -855,15 +855,18 @@ h3 {
   justify-content: center;
   flex-direction: column;
   border: 0.1rem solid #2A2C41;
+  border-radius: 1rem;
 }
 .report__form__label {
   margin-bottom: 0.2rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #1a1b15;
   font-weight: 700;
+  padding: 1rem;
 }
 .report__form__container {
   border: 0.1rem dashed #2A2C41;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -872,15 +875,31 @@ h3 {
 .report__form__container--disabled {
   display: none;
 }
+.report__form__radio {
+  display: inline;
+}
+.report__form__select {
+  padding: 1rem;
+}
 .report__form__options {
   display: flex;
   padding: 1rem;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 3.5rem;
 }
 .report__form__options__option {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  width: 11rem;
+  height: 6rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.4rem;
+}
+.report__form__options__option--active {
+  background-color: rgb(218, 243, 252);
+  box-shadow: 2px 2px 4px #2A2C41;
+  border-radius: 0.3rem;
 }
 .report__form__submit {
   background-color: #4D5AE6;
@@ -894,7 +913,8 @@ h3 {
   text-align: center;
   width: 100%;
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 2.5rem;
+  border-radius: 0.6rem;
 }
 .report__form__submit:hover {
   background-color: #2031e0;

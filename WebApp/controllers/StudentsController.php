@@ -152,7 +152,7 @@ class StudentsController
     public static function report(Router $router){
         $campus = Campus::all();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
+            //debug($_POST);
         }
         $router->render('students/report', [
             'campus' => $campus

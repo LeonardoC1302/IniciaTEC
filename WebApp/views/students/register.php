@@ -1,3 +1,8 @@
+<a href="/students" class="volver">
+    <i class="fa-solid fa-circle-left"></i>
+    Volver
+</a>
+
 <?php
     include_once __DIR__ . "/../templates/alerts.php";
 ?>
