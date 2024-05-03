@@ -99,6 +99,11 @@ class ActiveRecord {
         $result = self::$db->query($query);
         return ( $result ) ;
     }
+    public static function find3($equipoId) {
+        $query = "SELECT profesorId FROM " . static::$table  ." WHERE equipoId = '$equipoId'";
+        $result = self::$db->query($query);
+        return ( $result ) ;
+    }
 
     public static function get($limit) {
         $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT $limit" ;

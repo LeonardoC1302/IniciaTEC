@@ -1,4 +1,8 @@
-<?php
+
+<a href="/" class="volver">
+    <i class="fa-solid fa-circle-left"></i>
+    Volver
+</a><?php
     include_once __DIR__ . "/../templates/alerts.php";
 ?>
 <div class="assistants_actions">
@@ -24,14 +28,17 @@
                         <td class="table__td">
                             <?php echo $equipo->nombre; ?>
                         </td>
-                        <td class="table__td--actions">
-                            <form method="POST" action="/team/delete" class="table__form">
-                                <input type="hidden" name="id" value="<?php echo $equipo->id; ?>">
-                                <button class="table__action table__action--delete" type="submit">
-                                    <i class="fa-solid fa-trash"></i>
-                                    Dar de Baja
-                                </button>
-                            </form>
+                        <td class="table__td">
+                            <a href="/ver/equipo/trabajo?id=<?php echo $equipo->nombre; ?>" class="activityCard__view">
+                                <i class="fa-solid fa-eye"></i>
+                                Ver Detalles
+                            </a>
+                        </td>
+                         <td class="table__td">
+                            <a href="/editar/equipo/trabajo?id=<?php echo $equipo->nombre;?>" class="activity__info__edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Editar Equipo
+                            </a>
                         </td>
                     </tr>
                     

@@ -27,10 +27,21 @@
         flex: 1 1 20rem;
     }
     
-    &--detalle{
-        background-image: linear-gradient( to right, rgba(v.$black-color, 1), rgba(v.$black-color, 0.2)), image-set( url(../img/Detalle.avif) 1x, url(../img/Detalle.webp) 1x, url(../img/Detalle.jpeg) 1x);
+    &__main{
+        display: flex;
+        justify-content: space-between;
+        &__title{
+            margin: 1rem 0;
+            font-size: 3.5rem;
+        }
+
+        &__comment{
+            display: flex;
+            gap: 1rem;
+            color: v.$secondary-color;
+            font-weight: v.$bold;
+        }
     }
-    
 }
 
 

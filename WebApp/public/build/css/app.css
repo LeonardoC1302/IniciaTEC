@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -1508,6 +1509,8 @@ h3 {
 }
 .detalle--detalle {
   background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.2)), image-set(url(../img/Detalle.avif) 1x, url(../img/Detalle.webp) 1x, url(../img/Detalle.jpeg) 1x);
+  max-width: 100px; /* Ajusta el tamaño máximo horizontal */
+  max-height: 100px;
 }
 
 .auth, .auth--centered {

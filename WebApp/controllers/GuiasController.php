@@ -7,14 +7,19 @@ use Model\Asistentes;
 use Model\User; 
 use Model\Professor; 
 use Model\Team;
+use Model\ProfessorXTeam;
 use MVC\Router;  
 
 
 class GuiasController {
-  
+
+    public static function editarEquipo(Router $router){
+        $router->render('guias/editar');
+    }
     public static function asistentesAdmin(Router $router){
         $router->render('guias/asistentesAdmin');
     }
+    
 
     public static function asignarAsistente(Router $router){
         $router->render('guias/asignarAsistente');
@@ -203,7 +208,33 @@ class GuiasController {
         ]);
     }
     
+    public static function verEquipo(Router $router){
+        $equipo = $_GET['id'] ?? null;
+        $equipoId = Team::find2($equipo);
+        $resultado = $equipoId->fetch_assoc()['id'];
+
+
+        $profesores = ProfessorXTeam::all();
+        
+
+        foreach($profesores as $profesor){
+            $professor = Professor::find($profesor->profesorId);
+            $user = User::find($professor->usuarioId);
+            $professor->nombre = $user->nombre;
+            $professor->apellidos = $user->apellidos;
+            $professor->correo = $user->correo;
+            $professor->celular = $user->celular;
+
+            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
+            $professors[] = $professor;
+            
+            }
     
+        $router->render('guias/detalle', [
+            'professors' => $professors
+        ]);
+    }
     
 
 }
