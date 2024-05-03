@@ -1477,6 +1477,39 @@ h3 {
   background-color: #4D5AE6;
 }
 
+.verEliminar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.detalle {
+  max-width: 8000px;
+  padding: 2rem 2rem 2rem 2rem;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .detalle {
+    font-size: 3rem;
+    min-height: 30rem;
+    flex: 1 1 20rem;
+  }
+}
+.detalle--detalle {
+  background-image: linear-gradient(to right, #1a1b15, rgba(26, 27, 21, 0.2)), image-set(url(../img/Detalle.avif) 1x, url(../img/Detalle.webp) 1x, url(../img/Detalle.jpeg) 1x);
+}
+
 .auth, .auth--centered {
   width: min(95%, 60rem);
   margin: 0 auto;

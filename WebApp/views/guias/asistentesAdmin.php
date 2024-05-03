@@ -12,7 +12,7 @@
         <br>
         <a href="guias/crear/equipo" class="assistants_actions__type1">Crear Equipo de Trabajo</a>
         <br>
-        <a href="/verEliminar" class="assistants_actions__type2">Ver y Eliminar Equipo de Trabajo</a>
+        <a href="/ver/eliminar/equipo" class="assistants_actions__type2">Ver y Eliminar Equipo de Trabajo</a>
            
 </div>
 

@@ -19,6 +19,21 @@ class GuiasController {
     public static function asignarAsistente(Router $router){
         $router->render('guias/asignarAsistente');
     }
+    public static function verEliminarEquipo(Router $router){
+        $alerts = [];
+        $equipos = Team::all();
+
+        foreach ($equipos as $equipo) {
+            $equipo->nombre = $equipo->nombre;
+            $equipo->id = $equipo->id;
+            $equipo->planId = $equipo->planId;
+        }
+        $alerts = Team::getalerts();
+        $router->render('guias/verEliminarEquipo', [
+            'alerts' => $alerts,
+            'equipos' => $equipos
+        ]);
+    }
     
     public static function update(Router $router){
     
@@ -37,6 +52,23 @@ class GuiasController {
             } else {
                 // Manejar el caso en el que no se encuentre el campus
                 echo "El campus seleccionado no fue encontrado.";
+            }
+        }
+    }
+    public static function deleteTeam(Router $router){
+    
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $team_id = $_POST["id"];
+        
+            if ($team_id) {
+                
+                $query = "DELETE FROM equipo WHERE id = $team_id";
+                Team::update2($query);
+                header('Location: /ver/eliminar/equipo');
+
+            } else {
+                // Manejar el caso en el que no se encuentre el campus
+                echo "El equipo seleccionado no fue encontrado.";
             }
         }
     }
