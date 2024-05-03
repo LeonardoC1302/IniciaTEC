@@ -1,0 +1,49 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.verEliminar{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-grow:1;
+}
+
+.detalle{
+    max-width: 800px;
+    padding: 2rem 2rem 2rem 2rem;
+    @include m.shadow;
+    background-color: v.$white;
+    border-radius: 1rem;
+    margin:  2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    
+    @include m.tablet{
+        font-size: 3rem;
+        min-height: 30rem;
+        flex: 1 1 20rem;
+    }
+    
+    &__main{
+        display: flex;
+        justify-content: space-between;
+        &__title{
+            margin: 1rem 0;
+            font-size: 3.5rem;
+        }
+
+        &__comment{
+            display: flex;
+            gap: 1rem;
+            color: v.$secondary-color;
+            font-weight: v.$bold;
+        }
+    }
+}
+
+
+
+
+

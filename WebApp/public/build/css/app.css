@@ -1477,6 +1477,49 @@ h3 {
   background-color: #4D5AE6;
 }
 
+.verEliminar {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.detalle {
+  max-width: 800px;
+  padding: 2rem 2rem 2rem 2rem;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .detalle {
+    font-size: 3rem;
+    min-height: 30rem;
+    flex: 1 1 20rem;
+  }
+}
+.detalle__main {
+  display: flex;
+  justify-content: space-between;
+}
+.detalle__main__title {
+  margin: 1rem 0;
+  font-size: 3.5rem;
+}
+.detalle__main__comment {
+  display: flex;
+  gap: 1rem;
+  color: #838BE6;
+  font-weight: 700;
+}
+
 .auth, .auth--centered {
   width: min(95%, 60rem);
   margin: 0 auto;
