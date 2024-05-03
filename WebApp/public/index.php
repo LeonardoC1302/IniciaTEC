@@ -56,6 +56,13 @@ $router->get('/plans/create', [Planscontroller::class, 'create']);
 $router->get('/plans/plan', [Planscontroller::class, 'plan']);
 $router->get('/plans/plan/activity', [Planscontroller::class, 'activity']);
 
+$router->get('/plan/activity/update', [Planscontroller::class, 'updateActivity']);
+$router->post('/plan/activity/update', [Planscontroller::class, 'updateActivity']);
+
+$router->get('/plan/add', [Planscontroller::class, 'add']);
+$router->post('/plan/add', [Planscontroller::class, 'add']);
+
+
 // Students routes
 $router->get('/professors', [ProfessorsController::class, 'index']);
 

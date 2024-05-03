@@ -1075,6 +1075,80 @@ h3 {
   margin-top: 2rem;
 }
 
+.add-activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: min(95%, 140rem);
+  margin: 0 auto;
+}
+.add-activity__title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+.add-activity__form {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.add-activity__form__field {
+  display: flex;
+  flex-direction: column;
+}
+.add-activity__form__field--description, .add-activity__form__field--evidencias, .add-activity__form__field--justificacion {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+}
+.add-activity__form__field--disabled {
+  display: none;
+}
+.add-activity__form__label {
+  margin-bottom: 0.2rem;
+  font-size: 1.7rem;
+  color: #515442;
+}
+.add-activity__form__input, .add-activity__form__textarea {
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
+  font-size: 2rem;
+  background-color: #FFFFFF;
+}
+.add-activity__form__input:focus, .add-activity__form__textarea:focus {
+  outline: none;
+}
+.add-activity__form__input:disabled, .add-activity__form__textarea:disabled {
+  color: #4D5AE6;
+  font-weight: 700;
+}
+.add-activity__form__input--textarea, .add-activity__form__textarea--textarea {
+  border: 2px solid #4D5AE6;
+  height: 10rem;
+  resize: none;
+}
+.add-activity__form__input--textarea:focus, .add-activity__form__textarea--textarea:focus {
+  outline: none;
+}
+.add-activity__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  grid-column: span 2;
+}
+.add-activity__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+
 .professors_actions {
   display: flex;
   justify-content: space-between;
@@ -1370,7 +1444,6 @@ h3 {
 }
 
 .submit-button {
-  align-items: center;
   padding: 10px 20px;
   margin-top: 2rem;
   background-color: #4D5AE6;

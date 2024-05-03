@@ -1,0 +1,68 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.add-activity{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    @include m.container;
+    &__title{
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    &__form{
+        @include m.grid(2, 2.5rem);
+        &__field{
+            display: flex;
+            flex-direction: column;
+            &--description,
+            &--evidencias,
+            &--justificacion{
+                display: flex;
+                flex-direction: column;
+
+                grid-column: span 2;
+            }
+
+            &--disabled{
+                display: none;
+            }
+        }
+
+        &__label{
+            margin-bottom: .2rem;
+            font-size: 1.7rem;
+            color: lighten(v.$black-color, 20%);
+        }
+
+        &__input,
+        &__textarea{
+            border: none;
+            border-bottom: 2px solid v.$accent-color;
+            font-size: 2rem;
+            background-color: v.$white;
+            &:focus{
+                outline: none;
+            }
+            &:disabled{
+                color: v.$accent-color;
+                font-weight: v.$bold;
+            }
+            &--textarea{
+                border: 2px solid v.$accent-color;
+                height: 10rem;
+                resize: none;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+
+        &__submit{
+            @include m.button(v.$accent-color, v.$white);
+            grid-column: span 2;
+        }
+    }
+}

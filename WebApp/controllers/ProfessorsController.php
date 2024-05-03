@@ -54,7 +54,7 @@ class ProfessorsController
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(!empty($_FILES['foto']['tmp_name'])){
                 // Creamos el folder para guardar las imágenes
-                $image_folder = '../public/img/speakers';
+                $image_folder = '../public/img/professors';
                 if(!is_dir($image_folder)) {
                     mkdir($image_folder, 0775, true);
                 }

@@ -94,5 +94,111 @@ class Planscontroller {
         ]);
     }
 
-    
+    public static function create(Router $router){
+        $router->render('plans/create');
+    }
+
+    public static function add(Router $router){
+        $planId = $_GET['plan'] ?? null;
+        $alerts = [];
+        $types = ActivityType::all();
+        $modalities = Activity::MODALIDADES;
+
+        $professors = Professor::all();
+        $professors = array_map(function($professor){
+            $user = User::find($professor->usuarioId);
+            $professor->nombre = $user->nombre . ' ' . $user->apellidos;
+            return $professor;
+        }, $professors);
+
+        $activity = new Activity();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $activity->sync($_POST);
+ 
+            $estado = ActivityStatus::where('nombre', 'Planeada');
+            $activity->estadoId = $estado->id;
+            $activity->planId = $planId;
+
+            // Guardar el afiche (PDF)
+            $file = $_FILES['afiche'];
+            $fileName = $file['name'];
+
+            if($fileName){
+                $activity->afiche = $fileName;
+            }
+            $alerts = $activity->validate();
+
+            if(empty($alerts)){
+                $activity->save();
+                header('Location: /plans/plan?id=' . $planId);
+            }
+        }
+
+        $router->render('plans/add', [
+            'planId' => $planId,
+            'types' => $types,
+            'modalities' => $modalities,
+            'professors' => $professors,
+            'activity' => $activity,
+            'alerts' => $alerts
+        ]);
+    }
+
+    public static function updateActivity(Router $router){
+        $planId = $_GET['plan'] ?? null;
+        $alerts = [];
+        $types = ActivityType::all();
+        $modalities = Activity::MODALIDADES;
+
+        $professors = Professor::all();
+        $professors = array_map(function($professor){
+            $user = User::find($professor->usuarioId);
+            $professor->nombre = $user->nombre . ' ' . $user->apellidos;
+            return $professor;
+        }, $professors);
+
+        $states = ActivityStatus::all();
+
+        $activity = Activity::find($_GET['id']);
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            // debug($_POST);
+            $activity->sync($_POST);
+            $activity->planId = $planId;
+
+            // Guardar el afiche (PDF)
+            $file = $_FILES['afiche'];
+            $fileName = $file['name'];
+
+            if($fileName){
+                $activity->afiche = $fileName;
+            }
+
+            if($_POST['estadoId'] == 3){
+                $fileName = $_FILES['evidencias']['name'];
+                $activity->evidencias = $fileName;
+            } else if($_POST['estadoId'] == 4){
+                $activity->justificacion = $_POST['justificacion'];
+            }
+            $alerts = $activity->validateUpdate();
+
+            if(empty($alerts)){
+                $activity->update();
+                header('Location: /plans/plan/activity?id=' . $activity->id);
+            }
+
+            // debug($alerts);
+        }
+
+        $router->render('plans/update',[
+            'planId' => $planId,
+            'types' => $types,
+            'modalities' => $modalities,
+            'professors' => $professors,
+            'activity' => $activity,
+            'states' => $states,
+            'alerts' => $alerts
+        ]);
+    }
 }
