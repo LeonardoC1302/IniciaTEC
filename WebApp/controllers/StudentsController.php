@@ -12,6 +12,8 @@ use MVC\Router;
 use League\Csv\Writer;
 use League\Csv\Reader;
 use SplTempFileObject;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class StudentsController
 {
@@ -155,18 +157,18 @@ class StudentsController
     public static function report(Router $router){
         $campus = Campus::all();
         $students = Student::all();
-        $rol = Role::where('nombre', 'Estudiante');
+        $rolEstudiante = Role::where('nombre', 'Estudiante');
+        $data = array();
+        $header = array('Nombre', 'Apellidos', 'Correo', 'Contrasenna', 'Celular', 'Campus', 'Carnet');
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if($_POST['options'] === '1'){
-                $user = User::whereTwo('campusId', $_POST['campus'], 'roleId', $rol->id);
-                $data = array();
+                $user = User::whereTwo('campusId', $_POST['campus'], 'roleId', $rolEstudiante->id);
                 $campusName = Campus::where('id', $_POST['campus']);
                 $campusName = $campusName->nombre;
                 foreach($user as $u){
                     $student = Student::where('usuarioId', $u->id);
                     array_push($data, [$u->nombre, $u->apellidos, $u->correo, $u->contrasenna, $u->celular, $campusName, $student->carnet]); 
                 }
-                $header = array('Nombre', 'Apellidos', 'Correo', 'Contrasenna', 'Celular', 'Campus', 'Carnet');
                 $csv = Writer::createFromFileObject(new SplTempFileObject());
                 $csv->insertOne($header);
                 $csv->insertAll($data);
@@ -185,7 +187,36 @@ class StudentsController
                 ob_end_flush();
                 exit;
             }else{
-
+                $spreadsheet = new Spreadsheet();
+                $num = 1;
+                foreach($campus as $c){
+                    $data = array();
+                    array_push($data, $header);
+                    $user = User::whereTwo('campusId', $c->id, 'roleId', $rolEstudiante->id);
+                    foreach($user as $u){
+                        $student = Student::where('usuarioId', $u->id);
+                        array_push($data, [$u->nombre, $u->apellidos, $u->correo, $u->contrasenna, $u->celular, $c->nombre, $student->carnet]);
+                    }
+                    if($num == 1){
+                        $sheet = $spreadsheet->getActiveSheet();
+                        $num = $num + 1;
+                    }else{  
+                        $sheet = $spreadsheet->createSheet();
+                    }
+                    $sheet->setTitle($c->nombre);
+                    $sheet->fromArray($data, null,'A1');
+                }
+                $writer = new Xlsx($spreadsheet);
+                while (ob_get_level()) {
+                    ob_end_clean();
+                }
+                ob_start();
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment;filename="EstudiantesXCampus.xlsx"');
+                header('Cache-Control: max-age=0');
+                $writer->save('php://output');
+                ob_end_flush();
+                exit;
             }
         }
         $router->render('students/report', [
