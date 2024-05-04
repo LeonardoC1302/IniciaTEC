@@ -225,4 +225,7 @@ class StudentsController
     }
 }
 
+//Falta: Poder ordenar a los estudiantes en orden alfabetico o por carnet (Seleccionar orden) 
+//Validacion de Reportes. Error si escoge un campus pero no selecciona campus
+//Validacion de editar estudiantes. Solo si pertenece a la misma sede
 ?>
