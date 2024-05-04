@@ -77,10 +77,13 @@ $router->post('/guias/asignar/asistente', [GuiasController::class, 'update']);
 $router->get('/guias/crear/equipo', [GuiasController::class, 'crearEquipo']);
 $router->post('/guias/crear/equipo', [GuiasController::class, 'createTeam']);
 $router->get('/ver/eliminar/equipo', [GuiasController::class, 'verEliminarEquipo']);
-$router->post('/team/delete', [GuiasController::class, 'deleteTeam']);
+$router->post('/editar/equipo/trabajo', [GuiasController::class, 'deleteTeam']);
 $router->get('/ver/equipo/trabajo', [GuiasController::class, 'verEquipo']);
 $router->get('/editar/equipo/trabajo', [GuiasController::class, 'editarEquipo']);
 $router->get('/agregar/profesor', [GuiasController::class, 'editarEquipo']);
+$router->post('/add/equipo/trabajo', [GuiasController::class, 'addTeam']);
+$router->post('/guias/actualizar/equipo', [GuiasController::class, 'addTeam2']);
+
 
 
 

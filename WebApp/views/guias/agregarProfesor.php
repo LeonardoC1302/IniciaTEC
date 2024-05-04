@@ -6,18 +6,9 @@
 <?php
 include_once __DIR__ . "/../templates/alerts.php";
 ?>
-<div class="professors_actions">
-    <form method="POST" action="/add/equipo/trabajo">
-        <input type="hidden" name="professors" value="<?php echo htmlspecialchars(json_encode($professors)); ?>">
-        <input type="hidden" name="equipo" value="<?php echo $equipoId; ?>">
-        <button class="professors_actions__register" type="submit">
-            Agregar Profesor
-        </button>
-    </form>
-    <a href="/cambiar/anno=<?php echo $equipoId; ?>" class="professors_actions__register">Cambiar Generación</a>
-</div>
 <div class="professors">
     <h1 class="section__heading"><span>Editar el Equipo de Trabajo</span></h1>
+    <form method="post" action="/guias/actualizar/equipo">
     <?php if(!empty($professors)){ ?>
             <table class="table">
                 <thead class="table__thead">
@@ -57,20 +48,18 @@ include_once __DIR__ . "/../templates/alerts.php";
                             <td class="table__td">
                                 <?php echo $professor->coordinador; ?>
                             </td>
-                            <td class="table__td--actions">
-                                <form method="POST" action="/editar/equipo/trabajo?id=<?php echo $equipoId;?>" class="table__form">
-                                    <input type="hidden" name="id" value="<?php echo $professor->id; ?>">
-                                    <input type="hidden" name="equipo" value="<?php echo $equipoId; ?>">
-                                    <button  class="table__action table__action--delete" type="submit">
-                                        <i class="fa-solid fa-trash"></i>
-                                        Dar de Baja
-                                    </button>
-                                </form>
+                            <td class="table__td">
+                                <input type="checkbox" name="professors[]" value="<?php echo $professor->id; ?>">
+                                <input type="hidden" name="equipo" value="<?php echo $equipoId; ?>">
                             </td>
                         </tr>
                     <?php }?>
                 </tbody>
             </table>
+            <div class = asignar_actions>
+                <button type="submit" class="submit-button">Agregar</button>
+            </div>
+        </form>
             
             
     <?php } ?>

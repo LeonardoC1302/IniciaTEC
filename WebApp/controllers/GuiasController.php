@@ -46,12 +46,14 @@ class GuiasController {
             
             }
         $router->render('guias/editar', [
+            'alerts' => $alerts,
             'professors' => $professors,
             'equipoId' => $resultado
         ]);
 
     }
     public static function editarEquipo(Router $router){
+        $alerts = [];
         $equipo = $_GET['id'] ?? null;
         $equipoId = Team::find2($equipo);
     
@@ -75,6 +77,7 @@ class GuiasController {
             
             }
         $router->render('guias/editar', [
+            'alerts' => $alerts,
             'professors' => $professors,
             'equipoId' => $resultado
         ]);
@@ -125,6 +128,10 @@ class GuiasController {
         }
     }
     public static function deleteTeam(Router $router){
+        $alerts=[];
+        $equipo = $_GET['id'] ?? null;
+        $info = Team::find($equipo);
+
     
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $profe_id = $_POST["id"];
@@ -134,13 +141,210 @@ class GuiasController {
                 
                 $query = "DELETE FROM profesorxequipo WHERE profesorId = $profe_id AND equipoID = $equipo_id";
                 Team::update2($query);
-                header('Location: /editar/equipo/trabajo');
+                $redirectUrl = sprintf("/editar/equipo/trabajo?id=%s", urlencode($info->nombre));
+                echo "<script>window.location.replace('$redirectUrl');</script>";
+                exit;
 
             } else {
-                // Manejar el caso en el que no se encuentre el campus
                 echo "El equipo seleccionado no fue encontrado.";
             }
         }
+    }
+    public static function addTeam(Router $router){
+        $alerts = [];
+        $professorsJ = $_POST["professors"] ?? '';
+        $professorsS = json_decode($professorsJ, true);
+        $equipo = $_POST["equipo"];
+        $professors = Professor::all();
+        $professorsNotInTeam = [];
+        
+        foreach($professorsS as $profesor){
+            $professor = Professor::find($profesor['id']);
+            $user = User::find($professor->usuarioId);
+            $professor->nombre = $user->nombre;
+            $professor->apellidos = $user->apellidos;
+            $professor->correo = $user->correo;
+            $professor->celular = $user->celular;
+
+            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
+            $professorSS[] = $professor;
+            
+            }
+        if (count($professorsS) == 5) {
+            Professor::setAlert('error', 'Ya hay exactamente 5 profesores en el equipo.');
+            
+            $alerts = Professor::getalerts();
+            $router->render('guias/editar', [
+                'alerts' => $alerts,
+                'professors' => $professorSS,
+                'equipoId' => $equipo
+            ]);
+        }
+        else {
+            $professorsInTeamIds = array_column($professorsS, 'id');
+
+            $professorsNotInTeam = array_filter($professors, function($professor) use ($professorsInTeamIds) {
+                return !in_array($professor->id, $professorsInTeamIds);
+            });
+            
+            
+            foreach ($professorsNotInTeam as $professor) {
+                print($professor->nombre);
+                $user = User::find($professor->usuarioId);
+
+                $professor->nombre = $user->nombre;
+                $professor->apellidos = $user->apellidos;
+                $professor->correo = $user->correo;
+                $professor->celular = $user->celular;
+
+                $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+                $professor->id = $professor->id;
+                $profes[] = $professor;
+            }
+
+              
+            $alerts = Professor::getalerts();
+            $router->render('guias/agregarProfesor',[
+                'alerts' => $alerts,
+                'professors' => $profes,
+                'equipoId' => $equipo,
+                'equipo' => $professorSS
+            ]);
+            
+        }
+        
+    }
+    public static function addTeam2(Router $router){
+        $alerts = [];
+        $professors = Professor::all();
+        $selectedProfessors = $_POST['professors'] ?? [];
+        $equipo = $_POST['equipo'] ?? [];
+        $profAct = ProfessorXTeam::all1($equipo);
+
+    
+        if ((count($profAct) + count($selectedProfessors)) > 5) {
+            Professor::setAlert('error', 'Está excediendo la cantidad de profesores permitidos');
+        }
+        else {
+            $coordinatorCount = 0;
+            $AL = 0;
+            $CA = 0;
+            $LI = 0;
+            $SJ = 0;
+            $SC = 0;
+            foreach ($profAct as $professorId) {
+                $profesorId = Professor::find($professorId->profesorId);
+                $user = User::find($profesorId->usuarioId);
+
+                $profesorId->nombre = $user->nombre;
+                $profesorId->apellidos = $user->apellidos;
+                $profesorId->correo = $user->correo;
+                $profesorId->celular = $user->celular;
+                $profesorId->campusId = $user->campusId;
+
+                $profesorId->coordinador = $profesorId->isCoordinador ? 'Sí' : 'No';
+                $profesorId->id = $profesorId->id;
+
+                
+                if ($profesorId && $profesorId->coordinador === 'Sí') {
+                    $coordinatorCount++;
+                }
+                if ($profesorId && $profesorId->campusId === '1') {
+                    $AL++;
+                }
+                if ($profesorId && $profesorId->campusId === '2') {
+                    $CA++;
+                }
+                if ($profesorId && $profesorId->campusId === '3') {
+                    $SJ++;
+                }
+                if ($profesorId && $profesorId->campusId === '4') {
+                    $SC++;
+                }
+                if ($profesorId && $profesorId->campusId === '5') {
+                    $LI++;
+                }
+            }
+            foreach ($selectedProfessors as $professorId) {
+                $profesorId = Professor::find($professorId);
+                $user = User::find($profesorId->usuarioId);
+
+                $profesorId->nombre = $user->nombre;
+                $profesorId->apellidos = $user->apellidos;
+                $profesorId->correo = $user->correo;
+                $profesorId->celular = $user->celular;
+                $profesorId->campusId = $user->campusId;
+
+                $profesorId->coordinador = $profesorId->isCoordinador ? 'Sí' : 'No';
+                $profesorId->id = $profesorId->id;
+                $agregar[] = $profesorId;
+
+                
+                if ($profesorId && $profesorId->coordinador === 'Sí') {
+                    $coordinatorCount++;
+                }
+                if ($profesorId && $profesorId->campusId === '1') {
+                    $AL++;
+                }
+                if ($profesorId && $profesorId->campusId === '2') {
+                    $CA++;
+                }
+                if ($profesorId && $profesorId->campusId === '3') {
+                    $SJ++;
+                }
+                if ($profesorId && $profesorId->campusId === '4') {
+                    $SC++;
+                }
+                if ($profesorId && $profesorId->campusId === '5') {
+                    $LI++;
+                }
+                
+            }
+
+            if ($AL !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($CA !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($SJ !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($SC !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($LI !== 1){
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
+            }
+            else if ($coordinatorCount !== 1) {
+                Professor::setAlert('error', 'Debe seleccionar exactamente 1 coordinador.');
+            } else {
+                foreach ($selectedProfessors as $professorId) {
+                    $query = "INSERT INTO profesorxequipo (profesorId, equipoId) VALUES ($professorId, $equipo)";
+                    Team::update2($query);
+                }
+                Professor::setAlert('success', 'Grupo actualizado exitosamente.');
+                
+        }
+        }
+    
+        $alerts = Professor::getalerts();
+        foreach ($professors as $professor) {
+            $user = User::find($professor->usuarioId);
+
+            $professor->nombre = $user->nombre;
+            $professor->apellidos = $user->apellidos;
+            $professor->correo = $user->correo;
+            $professor->celular = $user->celular;
+
+            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+            $professor->id = $professor->id;
+        }
+        $router->render('guias/editar',[
+            'alerts' => $alerts,
+            'professors' => $professors
+        ]);
     }
     public static function crearEquipo(Router $router)
     {
