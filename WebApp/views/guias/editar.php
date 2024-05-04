@@ -1,8 +1,9 @@
 
-<a href="/" class="volver">
+<a href="#" onclick="history.back()" class="volver">
     <i class="fa-solid fa-circle-left"></i>
     Volver
 </a>
+
 <?php
 include_once __DIR__ . "/../templates/alerts.php";
 ?>
@@ -14,7 +15,13 @@ include_once __DIR__ . "/../templates/alerts.php";
             Agregar Profesor
         </button>
     </form>
-    <a href="/cambiar/anno=<?php echo $equipoId; ?>" class="professors_actions__register">Cambiar Generación</a>
+    <form method="POST" action="/edit/equipo/trabajo">
+        <input type="hidden" name="professors" value="<?php echo htmlspecialchars(json_encode($professors)); ?>">
+        <input type="hidden" name="equipo" value="<?php echo $equipoId; ?>">
+        <button class="professors_actions__register" type="submit">
+        Cambiar Generación
+        </button>
+    </form>
 </div>
 <div class="professors">
     <h1 class="section__heading"><span>Editar el Equipo de Trabajo</span></h1>

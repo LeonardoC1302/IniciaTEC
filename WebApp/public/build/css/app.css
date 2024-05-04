@@ -1485,25 +1485,14 @@ h3 {
 }
 
 .detalle {
-  max-width: 800px;
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 2rem 2rem auto 2rem;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   background-color: #FFFFFF;
   border-radius: 1rem;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-@media (min-width: 768px) {
-  .detalle {
-    font-size: 3rem;
-    min-height: 30rem;
-    flex: 1 1 20rem;
-  }
+  padding: 2rem;
+  margin: 2rem 20rem auto 20rem;
 }
 .detalle__main {
   display: flex;

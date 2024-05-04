@@ -82,6 +82,8 @@ $router->get('/ver/equipo/trabajo', [GuiasController::class, 'verEquipo']);
 $router->get('/editar/equipo/trabajo', [GuiasController::class, 'editarEquipo']);
 $router->get('/agregar/profesor', [GuiasController::class, 'editarEquipo']);
 $router->post('/add/equipo/trabajo', [GuiasController::class, 'addTeam']);
+$router->post('/anno/equipo', [GuiasController::class, 'editYearTeam']);
+$router->post('/edit/equipo/trabajo', [GuiasController::class, 'editTeam']);
 $router->post('/guias/actualizar/equipo', [GuiasController::class, 'addTeam2']);
 
 

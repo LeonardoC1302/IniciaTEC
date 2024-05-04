@@ -150,6 +150,48 @@ class GuiasController {
             }
         }
     }
+    public static function editTeam(Router $router){
+        $alerts=[];
+        $profe_id = $_POST["professors"];
+        $professorsS = json_decode($profe_id, true);
+        $equipo_id = $_POST["equipo"];
+        $info = Team::find($equipo_id);
+        $equipo_array = explode(" ", $info->nombre); 
+        $ano_equipo = end($equipo_array); 
+
+        $alerts = Professor::getalerts();
+        $router->render('guias/editarAnno', [
+            'alerts' => $alerts,
+            'equipoId' => $equipo_id,
+            'info' => $info,
+            "anno"=> $ano_equipo
+        ]);
+
+    }
+    public static function editYearTeam(Router $router){
+        $alerts=[];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $equipo_id = $_POST["equipo"];
+            $info = Team::find($equipo_id);
+            $anno = $_POST['years'] ?? [];
+            $nombre = 'Equipo Guía Primer Ingreso '. $anno; 
+            if ($anno) {
+                $query = "UPDATE equipo SET nombre = '$nombre' WHERE id = $equipo_id";
+                Team::update2($query);
+                Team::setAlert('success', 'Generación Actualizada');
+                
+                $alerts = Team::getalerts();
+                $router->render('guias/editarAnno', [
+                    'alerts' => $alerts,
+                    'equipoId' => $equipo_id, 
+                    'anno'=> $anno
+                ]);
+                exit;
+            } else {
+                echo "El equipo seleccionado no fue encontrado.";
+            }
+        }
+    }
     public static function addTeam(Router $router){
         $alerts = [];
         $professorsJ = $_POST["professors"] ?? '';

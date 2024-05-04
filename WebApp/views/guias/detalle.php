@@ -1,7 +1,8 @@
-<a href="/" class="volver">
+<a href="#" onclick="history.back()" class="volver">
     <i class="fa-solid fa-circle-left"></i>
     Volver
-</a><?php
+</a>
+<?php
 ?>
 <div class="professors">
     <h1 class="section__heading"><span>Detalles de Equipo de Trabajo</span></h1>
