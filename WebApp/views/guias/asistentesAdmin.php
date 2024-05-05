@@ -1,7 +1,8 @@
-<a href="#" onclick="history.back()" class="volver">
+<a href="/" class="volver">
     <i class="fa-solid fa-circle-left"></i>
     Volver
 </a>
+
 
 
 <main class="assistants_actions">
