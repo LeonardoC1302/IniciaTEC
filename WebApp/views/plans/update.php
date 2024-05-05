@@ -42,12 +42,12 @@
 
         <div class="add-activity__form__field">
             <label for="fecha" class="add-activity__form__label">Fecha de Realización</label>
-            <input type="date" id="fecha" name="fecha" class="add-activity__form__input" required value="<?php echo $activity->fecha ?>" min="<?php echo date('Y-m-d'); ?>">
+            <input type="date" id="fecha" name="fecha" class="add-activity__form__input" required value="<?php echo $activity->fecha ?>" >
         </div>
         
         <div class="add-activity__form__field">
             <label for="fechaPublicacion" class="add-activity__form__label">Fecha de Publicación</label>
-            <input type="date" id="fechaPublicacion" name="fechaPublicacion" class="add-activity__form__input" required value="<?php echo $activity->fechaPublicacion ?>" min="<?php echo date('Y-m-d'); ?>">
+            <input type="date" id="fechaPublicacion" name="fechaPublicacion" class="add-activity__form__input" required value="<?php echo $activity->fechaPublicacion ?>">
         </div>
 
         <div class="add-activity__form__field">

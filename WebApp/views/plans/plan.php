@@ -19,7 +19,7 @@
     <div class="plan__activities">
         <?php if(!empty($activities)){
             foreach($activities as $activity){ ?>
-            <div class="activityCard">
+            <div class="activityCard <?php echo ($activity->estadoId == $cancelada || $activity->estadoId == $realizada) ? 'activityCard--inactiva' : ''; ?>">
                 <h2 class="activityCard__name"><?php echo $activity->nombre; ?></h2>
                 <div class="activityCard__container">
                     <div class="activityCard__info">

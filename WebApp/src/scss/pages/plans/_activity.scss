@@ -63,6 +63,37 @@
             margin-top: 2rem;
         }
     }
+
+    &__evidences{
+        display: flex;
+        flex-direction: column;
+        &__title{
+            color: v.$accent-color;
+            font-size: 3rem;
+        }
+    }
+
+    &__cancel{
+        &__title{
+            color: v.$accent-color;
+            font-size: 3rem;
+        }
+        &__content{
+            
+        }
+    }
+}
+
+.evidences{
+    display: flex;
+    gap: 2rem;
+
+    &__image{
+        width: 20rem;
+        height: 20rem;
+        object-fit: cover;
+    }
+
 }
 
 .comment-form-container{

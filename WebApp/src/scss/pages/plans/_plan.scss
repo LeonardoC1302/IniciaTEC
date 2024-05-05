@@ -52,6 +52,17 @@
     border-radius: 2rem;
     @include m.shadow;
 
+    &--inactiva{
+        background-color: lighten(v.$black-color, 80%);
+        .activityCard__name,
+        .activityCard__view{
+            color: lighten(v.$black-color, 40%);
+        }
+        .activityCard__info__content{
+            color: lighten(v.$black-color, 50%);
+        }
+    }
+
     &__container{
         display: flex;
         justify-content: space-between;

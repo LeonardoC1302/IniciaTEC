@@ -9,6 +9,8 @@ use Model\Plan;
 use Model\Professor;
 use Model\User;
 use MVC\Router;
+use Intervention\Image\ImageManagerStatic as Image;
+use Model\Evidence;
 
 class Planscontroller {
     public static function index(Router $router){
@@ -45,11 +47,23 @@ class Planscontroller {
             $reponsable = Professor::find($activity->responsableId);
             $userResponsable = User::find($reponsable->usuarioId);
             $activity->responsable = $userResponsable->nombre . ' ' . $userResponsable->apellidos;
+
+            $estadoCancelada = ActivityStatus::where('nombre', 'Cancelada')->id;
+            $estadoRealizada = ActivityStatus::where('nombre', 'Realizada')->id;
+
+            if($activity->estadoId == $estadoCancelada || $activity->estadoId == $estadoRealizada){
+                // Move to the end of the array
+                $key = array_search($activity, $activities);
+                unset($activities[$key]);
+                array_push($activities, $activity);
+            }
         }
 
         $router->render('plans/plan', [
             'plan' => $plan,
-            'activities' => $activities
+            'activities' => $activities,
+            'cancelada' => $estadoCancelada,
+            'realizada' => $estadoRealizada
         ]);
     }
 
@@ -87,10 +101,13 @@ class Planscontroller {
             }
         }
 
+        $evidences = Evidence::whereAll('actividadId', $activityId);
+
         $router->render('plans/activity', [
             'planId' => $planId,
             'activity' => $activity,
-            'comments' => $comments
+            'comments' => $comments,
+            'evidences' => $evidences
         ]);
     }
 
@@ -189,22 +206,56 @@ class Planscontroller {
 
             if($fileName){
                 $activity->afiche = $fileName;
-            }
 
-            if($_POST['estadoId'] == 3){
-                $fileName = $_FILES['evidencias']['name'];
-                $activity->evidencias = $fileName;
-            } else if($_POST['estadoId'] == 4){
-                $activity->justificacion = $_POST['justificacion'];
+                $uplodads_folder = '../public/uploads';
+                if(!is_dir($uplodads_folder)) {
+                    mkdir($uplodads_folder, 0775, true);
+                }
+
+                $destination ='../public/uploads/' . $fileName;
+                $result = move_uploaded_file($file['tmp_name'], $destination);
+                if(!$result){
+                    $alerts['error'][] = 'No se pudo subir el archivo de afiche';
+                }
             }
-            $alerts = $activity->validateUpdate();
 
             if(empty($alerts)){
-                $activity->update();
-                header('Location: /plans/plan/activity?id=' . $activity->id);
-            }
+                if($_POST['estadoId'] == 3){
+                    if(!empty($_FILES['evidencias'])){
+                        $activity->evidencias = '1';
+                        $files = $_FILES['evidencias'];
+                        // For each file, save it
+                        $evidence_folder = '../public/img/evidences';
+                        if(!is_dir($evidence_folder)) {
+                            mkdir($evidence_folder, 0775, true);
+                        }
+    
+                        foreach($files['tmp_name'] as $name){
+                            $img_png = Image::make($name)->fit(800, 680)->encode('png', 80);
+                            $img_webp = Image::make($name)->fit(800, 680)->encode('webp', 80);
 
-            // debug($alerts);
+                            $fileName = md5(uniqid(rand(), true));
+                            $evidence = new Evidence([
+                                'contenido' => $fileName,
+                                'actividadId' => $activity->id
+                            ]);
+
+                            $evidence->save();
+                            $img_png->save($evidence_folder . '/' . $fileName . '.png');
+                            $img_webp->save($evidence_folder . '/' . $fileName . '.webp');
+                        }
+                    }
+
+                } else if($_POST['estadoId'] == 4){
+                    $activity->justificacion = $_POST['justificacion'];
+                }
+                $alerts = $activity->validateUpdate();
+
+                if(empty($alerts)){
+                    $activity->update();
+                    header('Location: /plans/plan/activity?id=' . $activity->id);
+                }
+            }
         }
 
         $router->render('plans/update',[
@@ -238,6 +289,17 @@ class Planscontroller {
                 $comments = Comment::whereAll('actividadId', $activity->id);
                 foreach($comments as $comment){
                     $comment->delete();
+                }
+
+                // Delete all the evidences
+                $evidences = Evidence::whereAll('actividadId', $activity->id);
+                foreach($evidences as $evidence){
+                    // Delete the file
+                    $evidence_folder = '../public/img/evidences';
+                    unlink($evidence_folder . '/' . $evidence->contenido . '.png');
+                    unlink($evidence_folder . '/' . $evidence->contenido . '.webp');
+                    
+                    $evidence->delete();
                 }
 
                 $activity->delete();

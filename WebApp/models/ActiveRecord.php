@@ -171,12 +171,11 @@ class ActiveRecord {
 
     public function create() {
         $attributes = $this->sanitizeAttributes();
-        $query = " INSERT INTO " . static::$table . " ( ";
+        $query = "INSERT INTO " . static::$table . " ( ";
         $query .= join(', ', array_keys($attributes));
-        $query .= " ) VALUES (' "; 
+        $query .= " ) VALUES ('"; 
         $query .= join("', '", array_values($attributes));
-        $query .= " ') ";
-        // debug($query);
+        $query .= "') ";
         $result = self::$db->query($query);
         return [
            'result' =>  $result,

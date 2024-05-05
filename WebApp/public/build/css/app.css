@@ -1003,6 +1003,16 @@ h3 {
   -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
 }
+.activityCard--inactiva {
+  background-color: #e6e7e1;
+}
+.activityCard--inactiva .activityCard__name,
+.activityCard--inactiva .activityCard__view {
+  color: #898e6e;
+}
+.activityCard--inactiva .activityCard__info__content {
+  color: #a0a48b;
+}
 .activityCard__container {
   display: flex;
   justify-content: space-between;
@@ -1095,6 +1105,27 @@ h3 {
   color: #515442;
   font-size: 2rem;
   margin-top: 2rem;
+}
+.activity__evidences {
+  display: flex;
+  flex-direction: column;
+}
+.activity__evidences__title {
+  color: #4D5AE6;
+  font-size: 3rem;
+}
+.activity__cancel__title {
+  color: #4D5AE6;
+  font-size: 3rem;
+}
+.evidences {
+  display: flex;
+  gap: 2rem;
+}
+.evidences__image {
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
 }
 
 .comment-form-container {

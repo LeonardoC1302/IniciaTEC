@@ -24,11 +24,36 @@
             <p class="activity__info__content"><span>Afiche: </span><?php echo $activity->afiche;?></p>
             <p class="activity__info__content"><span>Estado: </span><?php echo $activity->estado;?></p>
         </div>
-        <a href="/plan/activity/update?id=<?php echo $activity->id; ?>&plan=<?php echo $planId; ?>" class="activity__info__edit">
-            <i class="fa-solid fa-pen-to-square"></i>
-            Editar Actividad
-        </a>
+        <?php if($activity->estado != 'Cancelada' && $activity->estado != 'Realizada'){ ?>
+            <a href="/plan/activity/update?id=<?php echo $activity->id; ?>&plan=<?php echo $planId; ?>" class="activity__info__edit">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Editar Actividad
+            </a>
+        <?php } ?>
     </div>
+
+    <?php if($activity->estado == 'Realizada'){ ?>
+        <div class="activity__evidences">
+            <h2 class="activity__evidences__title">Evidencias</h2>
+            <div class="evidences">
+                <?php foreach($evidences as $evidence){ ?>
+                    <picture>
+                        <source srcset="/img/evidences/<?php echo $evidence->contenido;?>.webp" type="image/webp">
+                        <source srcset="/img/evidences/<?php echo $evidence->contenido;?>.png" type="image/png">
+        
+                        <img class="evidences__image" loading="lazy" width="200" height="300" src="/img/evidences/<?php echo $evidence->contenido;?>.png" alt="Evidence Image">
+                    </picture>
+                <?php } ?>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php if($activity->estado == 'Cancelada'){ ?>
+        <div class="activity__cancel">
+            <h2 class="activity__cancel__title">Motivo de Cancelación</h2>
+            <p class="activity__cancel__content"><?php echo $activity->justificacion; ?></p>
+        </div>
+    <?php } ?>
 
     <div class="activity__comments">
         <h2 class="activity__comments__title">Comentarios</h2>

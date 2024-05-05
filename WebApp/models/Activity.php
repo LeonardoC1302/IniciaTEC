@@ -4,7 +4,7 @@ namespace Model;
 
 class Activity extends ActiveRecord{
     protected static $table = 'actividad';
-    protected static $columnsDB = ['id', 'nombre', 'fecha', 'semana', 'descripcion', 'tipoId', 'responsableId', 'fechaPublicacion', 'modalidad', 'enlace', 'afiche', 'estadoId', 'planId', 'diasRecordatorio', 'diasAnuncio'];
+    protected static $columnsDB = ['id', 'nombre', 'fecha', 'semana', 'descripcion', 'tipoId', 'responsableId', 'fechaPublicacion', 'modalidad', 'enlace', 'afiche', 'estadoId', 'planId', 'diasRecordatorio', 'diasAnuncio', 'justificacion'];
 
     public $id;
     public $nombre;
@@ -21,6 +21,7 @@ class Activity extends ActiveRecord{
     public $planId;
     public $diasRecordatorio;
     public $diasAnuncio;
+    public $justificacion;
 
     public const MODALIDADES = [
         1 => 'Presencial',
@@ -43,6 +44,7 @@ class Activity extends ActiveRecord{
         $this->planId = $args['planId'] ?? null;
         $this->diasRecordatorio = $args['diasRecordatorio'] ?? '';
         $this->diasAnuncio = $args['diasAnuncio'] ?? '';
+        $this->justificacion = $args['justificacion'] ?? '';
     }
 
     public function validate(){
