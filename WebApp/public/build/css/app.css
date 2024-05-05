@@ -1169,6 +1169,71 @@ h3 {
   cursor: pointer;
 }
 
+.create-plan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+.create-plan__title {
+  color: #2A2C41;
+  font-size: 4rem;
+  margin: 0;
+}
+.create-plan__description {
+  color: #515442;
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+.create-plan__form {
+  width: min(95%, 60rem);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 5rem;
+}
+.create-plan__form__field {
+  display: flex;
+  flex-direction: column;
+}
+.create-plan__form__label {
+  margin-bottom: 0.2rem;
+  font-size: 1.7rem;
+  color: #515442;
+}
+.create-plan__form__input, .create-plan__form__textarea {
+  margin-bottom: 2rem;
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
+  font-size: 2rem;
+}
+.create-plan__form__input:focus, .create-plan__form__textarea:focus {
+  outline: none;
+}
+.create-plan__form__textarea {
+  height: 15rem;
+  border: 2px solid #4D5AE6;
+  resize: none;
+}
+.create-plan__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+.create-plan__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+
 .professors_actions {
   display: flex;
   justify-content: space-between;

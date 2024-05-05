@@ -95,7 +95,23 @@ class Planscontroller {
     }
 
     public static function create(Router $router){
-        $router->render('plans/create');
+        $alerts = [];
+        $plan = new Plan();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $plan->sync($_POST);
+            $alerts = $plan->validate();
+            
+            if(empty($alerts)){
+                $plan->save();
+                header('Location: /plans');
+            }
+        }
+
+        $router->render('plans/create', [
+            'alerts' => $alerts,
+            'plan' => $plan
+        ]);
     }
 
     public static function add(Router $router){
@@ -200,5 +216,24 @@ class Planscontroller {
             'states' => $states,
             'alerts' => $alerts
         ]);
+    }
+
+    public static function delete(Router $router){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id = $_POST['id'];
+            $plan = Plan::find($id);
+
+            // Delete all activities from the plan
+            $activities = Activity::whereAll('planId', $id);
+            foreach($activities as $activity){
+                $activity->delete();
+            }
+
+            // Delete the plan
+            $plan->delete();
+
+            header('Location: /plans');
+        }
+
     }
 }

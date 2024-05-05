@@ -15,4 +15,16 @@ class Plan extends ActiveRecord{
         $this->nombre = $args['nombre'] ?? '';
         $this->descripcion = $args['descripcion'] ?? '';
     }
+
+    public function validate(){
+        if(!$this->nombre){
+            self::setAlert('error', 'El nombre es obligatorio');
+        }
+        
+        if(!$this->descripcion){
+            self::setAlert('error', 'La descripción es obligatoria');
+        }
+
+        return self::$alerts;
+    }
 }

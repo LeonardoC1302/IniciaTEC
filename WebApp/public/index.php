@@ -52,6 +52,7 @@ $router->post('/students/report', [StudentsController::class, 'report']);
 $router->get('/plans', [Planscontroller::class, 'index']);
 
 $router->get('/plans/create', [Planscontroller::class, 'create']);
+$router->post('/plans/create', [Planscontroller::class, 'create']);
 
 $router->get('/plans/plan', [Planscontroller::class, 'plan']);
 $router->get('/plans/plan/activity', [Planscontroller::class, 'activity']);
@@ -61,6 +62,8 @@ $router->post('/plan/activity/update', [Planscontroller::class, 'updateActivity'
 
 $router->get('/plan/add', [Planscontroller::class, 'add']);
 $router->post('/plan/add', [Planscontroller::class, 'add']);
+
+$router->post('/plans/delete', [Planscontroller::class, 'delete']);
 
 
 // Students routes
