@@ -155,6 +155,7 @@ class StudentsController
     }
 
     public static function report(Router $router){
+        $alerts = [];
         $campus = Campus::all();
         $students = Student::all();
         $rolEstudiante = Role::where('nombre', 'Estudiante');
@@ -162,30 +163,34 @@ class StudentsController
         $header = array('Nombre', 'Apellidos', 'Correo', 'Contrasenna', 'Celular', 'Campus', 'Carnet');
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if($_POST['options'] === '1'){
-                $user = User::whereTwo('campusId', $_POST['campus'], 'roleId', $rolEstudiante->id);
-                $campusName = Campus::where('id', $_POST['campus']);
-                $campusName = $campusName->nombre;
-                foreach($user as $u){
-                    $student = Student::where('usuarioId', $u->id);
-                    array_push($data, [$u->nombre, $u->apellidos, $u->correo, $u->contrasenna, $u->celular, $campusName, $student->carnet]); 
+                if(!isset($_POST['campus'])){
+                    $alerts['error'][] = 'Seleccione un campus';
+                } else{
+                    $user = User::whereTwo('campusId', $_POST['campus'], 'roleId', $rolEstudiante->id);
+                    $campusName = Campus::where('id', $_POST['campus']);
+                    $campusName = $campusName->nombre;
+                    foreach($user as $u){
+                        $student = Student::where('usuarioId', $u->id);
+                        array_push($data, [$u->nombre, $u->apellidos, $u->correo, $u->contrasenna, $u->celular, $campusName, $student->carnet]); 
+                    }
+                    $csv = Writer::createFromFileObject(new SplTempFileObject());
+                    $csv->insertOne($header);
+                    $csv->insertAll($data);
+    
+                    while (ob_get_level()) {
+                        ob_end_clean();
+                    }
+                    ob_start();
+    
+                    header('Content-Type: application/vnd.ms-excel');
+                    header('Content-Disposition: attachment; filename=$campusName . "-Estudiantes.csv"');
+                    header('Cache-Control: max-age=0');
+    
+                    $csv->output($campusName . '-Estudiantes.csv');
+    
+                    ob_end_flush();
+                    exit;
                 }
-                $csv = Writer::createFromFileObject(new SplTempFileObject());
-                $csv->insertOne($header);
-                $csv->insertAll($data);
-
-                while (ob_get_level()) {
-                    ob_end_clean();
-                }
-                ob_start();
-
-                header('Content-Type: application/vnd.ms-excel');
-                header('Content-Disposition: attachment; filename=$campusName . "-Estudiantes.csv"');
-                header('Cache-Control: max-age=0');
-
-                $csv->output($campusName . '-Estudiantes.csv');
-
-                ob_end_flush();
-                exit;
             }else{
                 $spreadsheet = new Spreadsheet();
                 $num = 1;
@@ -220,6 +225,7 @@ class StudentsController
             }
         }
         $router->render('students/report', [
+            'alerts' => $alerts,
             'campus' => $campus
         ]);
     }
