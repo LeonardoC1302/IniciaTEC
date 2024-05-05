@@ -21,4 +21,11 @@ class Comment extends ActiveRecord{
         $this->comentarioId = $args['comentarioId'] ?? null;
         $this->profesorId = $args['profesorId'] ?? null;
     }
+
+    public function validate(){
+        if(!$this->contenido){
+            self::setAlert('error', "El contenido es obligatorio");
+        }
+        return self::$alerts;
+    }
 }

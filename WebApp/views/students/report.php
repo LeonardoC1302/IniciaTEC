@@ -13,7 +13,7 @@
         <form method="POST" class="report__form">
             <label class="report__form__label" for="Uno">Escoger tipo de reporte</label>
             <div class="report__form__options">
-                <div id= "radioOne" class="report__form__options__option">
+                <div id= "radioOne" class="report__form__options__option report__form__options__option--active">
                     <label  for="Uno">Un Campus</label>
                     <input class="report__form__radio" type="radio" id="Uno" name="options" value="1" checked>
                 </div>

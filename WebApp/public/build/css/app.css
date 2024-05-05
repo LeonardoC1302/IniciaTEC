@@ -343,6 +343,7 @@ img {
   padding: 2rem;
   text-transform: uppercase;
   font-weight: 700;
+  width: fit-content;
 }
 
 h1, h2, h3 {
@@ -1050,6 +1051,7 @@ h3 {
   gap: 1rem;
   color: #838BE6;
   font-weight: 700;
+  cursor: pointer;
 }
 .activity__card {
   -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
@@ -1093,6 +1095,67 @@ h3 {
   color: #515442;
   font-size: 2rem;
   margin-top: 2rem;
+}
+
+.comment-form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.5);
+  background-color: #FFFFFF;
+}
+.comment-form-container__title {
+  font-size: 2rem;
+  color: #4D5AE6;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+}
+.comment-form-container i {
+  color: #FF5F5F;
+  font-weight: 900;
+  font-size: 2rem;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: right;
+}
+.comment-form-container--disabled {
+  display: none;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 4rem 4rem 4rem;
+}
+.comment-form__textarea {
+  margin-bottom: 1rem;
+  border: 1px solid #4D5AE6;
+  padding: 1rem;
+  font-size: 1.7rem;
+  height: 15rem;
+  resize: none;
+}
+.comment-form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+.comment-form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
 }
 
 .add-activity {

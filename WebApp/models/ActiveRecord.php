@@ -60,7 +60,9 @@ class ActiveRecord {
         $attributes = $this->attributes();
         $sanitized = [];
         foreach($attributes as $key => $value ) {
-            $sanitized[$key] = self::$db->escape_string($value);
+            if(!is_null($value)) {
+                $sanitized[$key] = self::$db->escape_string($value);
+            }
         }
         return $sanitized;
     }

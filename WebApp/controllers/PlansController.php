@@ -221,6 +221,9 @@ class Planscontroller {
     public static function delete(Router $router){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $id = $_POST['id'];
+            if(!$id){
+                header('Location: /plans');
+            }
             $plan = Plan::find($id);
 
             // Delete all activities from the plan
@@ -234,6 +237,26 @@ class Planscontroller {
 
             header('Location: /plans');
         }
+    }
 
+    public static function comment(Router $router){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if(!isset($_SESSION)){
+                session_start();
+            }
+            $professor = Professor::where('usuarioId', $_SESSION['id']);
+            if(!$professor){
+                header('Location: /');
+            }
+            $comment = new Comment($_POST);
+            $alerts = $comment->validate();
+
+            if(empty($alerts)){
+                $comment->profesorId = $professor->id;
+                $comment->fecha = date('Y-m-d H:i:s');
+                $comment->save();
+                header('Location: /plans/plan/activity?id=' . $comment->actividadId) . '&plan=' . $_POST['planId'];
+            } 
+        }
     }
 }

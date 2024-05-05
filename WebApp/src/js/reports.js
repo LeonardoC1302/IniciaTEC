@@ -3,7 +3,6 @@
     const radio2 = document.querySelector("#Todos");
     const radioOne = document.querySelector("#radioOne");
     const radioAll = document.querySelector("#radioAll");
-    radioOne.classList.add('report__form__options__option--active');
     if(radio1){
         const opcionesDiv = document.querySelector("#report");
 

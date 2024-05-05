@@ -6,7 +6,7 @@
 <div class="activity">
     <div class="activity__main">
         <h1 class="activity__main__title"><?php echo $activity->nombre; ?></h1>
-        <a href="#" class="activity__main__comment">
+        <a class="activity__main__comment">
             <i class="fa-solid fa-comment"></i>
             Realizar Comentario
         </a>
@@ -33,14 +33,14 @@
     <div class="activity__comments">
         <h2 class="activity__comments__title">Comentarios</h2>
         <?php if(!empty($comments)){ ?>
-            <div class="comments">
+            <div class="comments" id="comments">
                 <?php foreach($comments as $comment){ ?>
                     <div class="comment">
                         <div class="comment__info">
                             <p class="comment__data">Prof. <?php echo $comment->profesor ?> ( <?php echo $comment->fecha; ?> )</p>
                             <p class="comment__content"><?php echo $comment->contenido; ?></p>
                         </div>
-                        <a href="#" class="comment__comment">
+                        <a class="comment__comment" data-commentId="<?php echo $comment->id; ?>">
                             <i class="fa-solid fa-comment"></i>
                         </a>
                     </div>
@@ -56,7 +56,19 @@
                 <?php } ?>
             </div>
         <?php } else { ?>
-            <p class="activity__comments__empty">No hay comentarios para     esta actividad</p>
+            <p class="activity__comments__empty">No hay comentarios para esta actividad</p>
         <?php } ?>
+
+        <div class="comment-form-container comment-form-container--disabled" id="commentForm">
+            <i class="fa-solid fa-xmark" id="formClose"></i>
+            <h3 class="comment-form-container__title">Realizar Comentario</h3>
+            <form action="/plans/activity/comment" method="POST" class="comment-form">
+                <input type="hidden" name="actividadId" value="<?php echo $activity->id; ?>">
+                <input type="hidden" name="comentarioId" value="<?php echo null; ?>" id="inputCommentId">
+                <input type="hidden" name="planId" value="<?php echo $planId; ?>">
+                <textarea name="contenido" id="contenido" cols="30" rows="10" placeholder="Escribe un comentario" class="comment-form__textarea"></textarea>
+                <button type="submit" class="comment-form__submit">Comentar</button>
+            </form>
+        </div>
     </div>
 </div>
