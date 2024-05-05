@@ -229,6 +229,17 @@ class Planscontroller {
             // Delete all activities from the plan
             $activities = Activity::whereAll('planId', $id);
             foreach($activities as $activity){
+                // Delete all subcomments from the activity
+                $subcomments = Comment::whereNotNull('actividadId', $activity->id, 'comentarioId');
+                foreach($subcomments as $subcomment){
+                    $subcomment->delete();
+                }
+                // Delete all comments from the activity
+                $comments = Comment::whereAll('actividadId', $activity->id);
+                foreach($comments as $comment){
+                    $comment->delete();
+                }
+
                 $activity->delete();
             }
 
@@ -241,6 +252,10 @@ class Planscontroller {
 
     public static function comment(Router $router){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            // If commentId is '' turn into null
+            if($_POST['comentarioId'] == ''){
+                $_POST['comentarioId'] = null;
+            }
             if(!isset($_SESSION)){
                 session_start();
             }

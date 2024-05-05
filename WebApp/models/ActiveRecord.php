@@ -137,6 +137,12 @@ class ActiveRecord {
         return $result;
     }
 
+    public static function whereNotNull($column1, $value, $column2) {
+        $query = "SELECT * FROM " . static::$table . " WHERE $column2 IS NOT NULL AND $column1 = '$value'";
+        $result = self::querySQL($query);
+        return $result;
+    }
+
     public static function order($column, $order){
         $query = "SELECT * FROM " . static::$table . " ORDER BY $column $order";
         $result = self::querySQL($query);
