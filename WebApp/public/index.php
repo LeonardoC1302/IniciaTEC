@@ -36,6 +36,7 @@ $router->get('/account', [AuthController::class, 'account']);
 
 // Students routes
 $router->get('/students', [StudentsController::class, 'index']);
+$router->post('/students', [StudentsController::class, 'index']);
 
 $router->get('/students/register', [StudentsController::class, 'register']);
 $router->post('/students/register', [StudentsController::class, 'register']);

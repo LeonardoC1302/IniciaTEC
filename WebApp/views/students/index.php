@@ -4,8 +4,25 @@
 </a>
 
 <div class="students_actions">
-    <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
-    <a href="/students/report" class="students_actions__report">Generar Reporte</a>
+    <div>
+        <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
+    </div>
+
+    <div class="filtros__form-container">
+        <form id="studentOrder" method="POST">
+            <label class="filtros__lbl">
+                Ordenar Estudiantes
+            </label>
+            <div class="filtros__btn-container">
+                <button type="submit" name="filtro" class="filtros__btn" value="apellidos" id='apellidos'>Por Apellido</button>
+                <button type="submit" name="filtro" class="filtros__btn" value="carnet" id='carnet' >Por Carnet</button>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <a href="/students/report" class="students_actions__report">Generar Reporte</a>
+    </div>
 </div>
 
 

@@ -34,3 +34,33 @@
         font-size: 2rem;
     }
 }
+
+.filtros{
+    &__form-container {
+        width: 300px;
+        border: 1px groove #ccc;
+        border-radius: 5px;
+        padding: 1rem;
+    }
+    &__btn-container {
+        margin-top: 10px;
+        text-align: center;
+    }
+    &__btn {
+        display: inline-block;
+        padding: 8px 16px;
+        margin: 0 5px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #c8b5fc;
+    }
+    &__btn:hover {
+        background-color: #b89afd;
+    }
+    &__lbl{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -17,19 +17,37 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class StudentsController
 {
-    public static function index(Router $router)
-    {
-        $students = Student::all();
-        foreach($students as $student){
-            $user = User::where('id', $student->usuarioId);
-            $campus = Campus::where('id', $user->campusId);
+    public static function index(Router $router){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            //debug($_POST);
+            $students = Student::all();
+            foreach($students as $student){
+                $user = User::where('id', $student->usuarioId);
+                $campus = Campus::where('id', $user->campusId);
 
-            $student->nombre = $user->nombre;
-            $student->apellidos = $user->apellidos;
-            $student->campus = $campus->nombre;
+                $student->nombre = $user->nombre;
+                $student->apellidos = $user->apellidos;
+                $student->campus = $campus->nombre;
+            }
+            /*
+            if($_POST['filtro'] === "carnet"){
+                usort($students, 'sortByCarnetAsc');
+            }else{
+                usort($students, 'sortBySurnameAsc');
+            }
+            */
+          
+        }else{
+            $students = Student::all();
+            foreach($students as $student){
+                $user = User::where('id', $student->usuarioId);
+                $campus = Campus::where('id', $user->campusId);
 
+                $student->nombre = $user->nombre;
+                $student->apellidos = $user->apellidos;
+                $student->campus = $campus->nombre;
+            }
         }
-
         $router->render('students/index', [
             'students' => $students
         ]);

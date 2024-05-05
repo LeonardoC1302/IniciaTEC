@@ -725,6 +725,34 @@ h3 {
   font-size: 2rem;
 }
 
+.filtros__form-container {
+  width: 300px;
+  border: 1px groove #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.filtros__btn-container {
+  margin-top: 10px;
+  text-align: center;
+}
+.filtros__btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #c8b5fc;
+}
+.filtros__btn:hover {
+  background-color: #b89afd;
+}
+.filtros__lbl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .edit_student {
   display: flex;
   flex-direction: column;
