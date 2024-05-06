@@ -19,16 +19,6 @@ class StudentsController
 {
     public static function index(Router $router){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            //debug($_POST);
-            $students = Student::all();
-            foreach($students as $student){
-                $user = User::where('id', $student->usuarioId);
-                $campus = Campus::where('id', $user->campusId);
-
-                $student->nombre = $user->nombre;
-                $student->apellidos = $user->apellidos;
-                $student->campus = $campus->nombre;
-            }
             $studentRole = Role::where('nombre', 'Estudiante');
             if($_POST['filtro'] === "carnet"){
                 $students = Student::order('carnet', 'ASC');
