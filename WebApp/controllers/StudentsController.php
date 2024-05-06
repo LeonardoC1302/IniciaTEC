@@ -29,16 +29,35 @@ class StudentsController
                 $student->apellidos = $user->apellidos;
                 $student->campus = $campus->nombre;
             }
-            /*
+            $studentRole = Role::where('nombre', 'Estudiante');
             if($_POST['filtro'] === "carnet"){
-                usort($students, 'sortByCarnetAsc');
+                $students = Student::order('carnet', 'ASC');
+
+                foreach($students as $student){
+                    $campus = Campus::where('id', $user->campusId);
+                    $student->campus = $campus->nombre;
+
+                    $user = User::where('id', $student->usuarioId);
+                    $student->nombre = $user->nombre;
+                    $student->apellidos = $user->apellidos;
+                }
             }else{
-                usort($students, 'sortBySurnameAsc');
+                $users = User::whereOrder('roleId', $studentRole->id, 'apellidos ASC');
+                $students = array();
+
+                foreach($users as $user){
+                    $student = Student::where('usuarioId', $user->id);
+                    $campus = Campus::where('id', $user->campusId);
+                    $student->campus = $campus->nombre;
+                    $student->nombre = $user->nombre;
+                    $student->apellidos = $user->apellidos;
+                    array_push($students, $student);
+                }
             }
-            */
           
         }else{
             $students = Student::all();
+
             foreach($students as $student){
                 $user = User::where('id', $student->usuarioId);
                 $campus = Campus::where('id', $user->campusId);
@@ -48,6 +67,8 @@ class StudentsController
                 $student->campus = $campus->nombre;
             }
         }
+
+        // debug($students);
         $router->render('students/index', [
             'students' => $students
         ]);
