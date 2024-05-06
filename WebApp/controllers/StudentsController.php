@@ -24,12 +24,11 @@ class StudentsController
                 $students = Student::order('carnet', 'ASC');
 
                 foreach($students as $student){
-                    $campus = Campus::where('id', $user->campusId);
-                    $student->campus = $campus->nombre;
-
                     $user = User::where('id', $student->usuarioId);
+                    $campus = Campus::where('id', $user->campusId);
                     $student->nombre = $user->nombre;
                     $student->apellidos = $user->apellidos;
+                    $student->campus = $campus->nombre;
                 }
             }else{
                 $users = User::whereOrder('roleId', $studentRole->id, 'apellidos ASC');
