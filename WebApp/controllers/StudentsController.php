@@ -260,6 +260,5 @@ class StudentsController
     }
 }
 
-//Falta: Poder ordenar a los estudiantes en orden alfabetico o por carnet (Seleccionar orden) 
 //Validacion de editar estudiantes. Solo si pertenece a la misma sede
 ?>
