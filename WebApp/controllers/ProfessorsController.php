@@ -141,6 +141,8 @@ class ProfessorsController
                 $professor->save();
             }
 
+            header('Location: /professors');
+
         }
 
         $teams = Team::all();
