@@ -8,7 +8,9 @@ use Model\Professor;
 use Model\User; 
 use MVC\Router; 
 use Intervention\Image\ImageManagerStatic as Image;
+use Model\ProfessorXTeam;
 use Model\Role;
+use Model\Team;
 use Model\UserStatus;
 
 class ProfessorsController
@@ -111,5 +113,41 @@ class ProfessorsController
         ]);
     }
 
+    public static function coordinator(Router $router)
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $teamId = $_POST['teamId'];
+            $profId = $_POST['profId'];
+            if(!$teamId || !$profId) {
+                header('Location: /professors/coordinator');
+            }
+
+            $team = Team::find($teamId);
+            $professor = Professor::find($profId);
+            if(!$team || !$professor) {
+                header('Location: /professors/coordinator');
+            }
+
+            // Set all professors from the team to not be coordinators except the selected one
+            $professorsXTeam = ProfessorXTeam::all1($teamId);
+            foreach ($professorsXTeam as $profXTeam) {
+                $professor = Professor::find($profXTeam->profesorId);
+
+                if($profXTeam->profesorId == $profId) {
+                    $professor->isCoordinador = 1;
+                } else {
+                    $professor->isCoordinador = 0;
+                }
+                $professor->save();
+            }
+
+        }
+
+        $teams = Team::all();
+        $teams = array_reverse($teams);
+        $router->render('professors/coordinator', [
+            'teams' => $teams
+        ]);
+    }
     
 }

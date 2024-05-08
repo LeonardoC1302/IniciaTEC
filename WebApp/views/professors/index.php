@@ -5,7 +5,7 @@
 
 <div class="professors_actions">
     <a href="/professors/register" class="professors_actions__register">Registrar Profesor</a>
-    <a href="/professor/coordinator" class="professors_actions__coordinator">Dar Rol Coordinador</a>
+    <a href="/professors/coordinator" class="professors_actions__coordinator">Dar Rol Coordinador</a>
 </div>
 
 <div class="professors">

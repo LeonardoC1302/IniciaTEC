@@ -1535,6 +1535,76 @@ h3 {
   cursor: pointer;
 }
 
+.coordinator {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+.coordinator__title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0;
+}
+.coordinator__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.coordinator__form__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.coordinator__form__field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  width: fit-content;
+}
+.coordinator__form__label--radio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #4D5AE6;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.coordinator__form__label--radio:hover, .coordinator__form__label--radio--checked {
+  background-color: #4D5AE6;
+  color: white;
+}
+.coordinator__form__radio {
+  display: none;
+}
+.coordinator__form__radio__text {
+  font-size: 1.7rem;
+}
+.coordinator__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  margin-top: 2rem;
+}
+.coordinator__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+
 .assistants_actions {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,63 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.coordinator{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    flex-grow: 1;
+    // @include m.container;
+
+    &__title{
+        font-size: 4rem;
+        font-weight: v.$black-font;
+        margin: 0;
+    }
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        // max-width: 500px;
+        &__title{
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        
+        }
+        &__field{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            width: fit-content;
+        }
+        &__label--radio{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid v.$accent-color;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover, &--checked{
+                background-color: v.$accent-color;
+                color: white;
+            }
+        }
+        &__radio{
+            display: none;
+            &__text{
+                font-size: 1.7rem;
+            }
+        }
+        &__submit{
+            @include m.button(v.$accent-color, v.$white);
+            margin-top: 2rem;
+        }
+    }
+}

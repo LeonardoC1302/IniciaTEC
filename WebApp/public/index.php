@@ -3,6 +3,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\APIProfessors;
 use Controllers\AuthController;
 use MVC\Router;
 use Controllers\PagesController;
@@ -76,6 +77,10 @@ $router->get('/professors', [ProfessorsController::class, 'index']);
 $router->get('/professors/register', [ProfessorsController::class, 'register']);
 $router->post('/professors/register', [ProfessorsController::class, 'register']);
 
+$router->get('/professors/coordinator', [ProfessorsController::class, 'coordinator']);
+$router->post('/professors/coordinator', [ProfessorsController::class, 'coordinator']);
+
+$router->get('/api/professors', [APIProfessors::class, 'index']);
 
 // Guias routes
 $router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
