@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use Classes\Email;
+use Model\Campus;
 use Model\Role;
 use Model\User;
 use MVC\Router;
@@ -27,6 +28,15 @@ class AuthController {
                         $_SESSION['apellidos'] = $user->apellidos;
                         $_SESSION['correo'] = $user->correo;
                         $_SESSION['roleId'] = $user->roleId;
+
+                        // Nombre del rol
+                        $role = Role::find($user->roleId);
+                        $_SESSION['rol'] = strtolower($role->nombre);
+
+                        // Nombre del campus
+                        $campus = Campus::find($user->campusId);
+                        $_SESSION['campus'] = strtolower($campus->nombre);
+
                         // Cambiar dependiendo del rol
                         header('Location: /');
                     } else{
