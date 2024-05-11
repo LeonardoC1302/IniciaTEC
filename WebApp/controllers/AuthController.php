@@ -19,8 +19,8 @@ class AuthController {
                 if(!$user){
                     User::setAlert('error', 'El usuario no existe');
                 } else{
-                    // $user->hashPassword();
-                    // $user->save();
+                    $user->hashPassword();
+                    $user->save();
                     if(password_verify($_POST['contrasenna'], $user->contrasenna)){
                         session_start();
                         $_SESSION['id'] = $user->id;
@@ -47,7 +47,8 @@ class AuthController {
         }
         $alerts = user::getalerts();
         $router->render('auth/login',[
-            'alerts' => $alerts
+            'alerts' => $alerts,
+            'session' => $_SESSION
         ]);
     }
 

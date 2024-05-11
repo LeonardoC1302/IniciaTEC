@@ -7,6 +7,7 @@ use Model\Asistentes;
 use Model\User; 
 use Model\Professor; 
 use Model\Team;
+use Model\Bitacora;
 use Model\ProfessorXTeam;
 use MVC\Router;  
 
@@ -128,27 +129,63 @@ class GuiasController {
         }
     }
     public static function deleteTeam(Router $router){
+        session_start();
         $alerts=[];
         $equipo = $_GET['id'] ?? null;
+
         $info = Team::find($equipo);
-
-    
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $profe_id = $_POST["id"];
-            $equipo_id = $_POST["equipo"];
+        $userId = $_SESSION['id'];
+        $user = User::find($userId);
         
-            if ($profe_id) {
-                
-                $query = "DELETE FROM profesorxequipo WHERE profesorId = $profe_id AND equipoID = $equipo_id";
-                Team::update2($query);
-                $redirectUrl = sprintf("/editar/equipo/trabajo?id=%s", urlencode($info->nombre));
-                echo "<script>window.location.replace('$redirectUrl');</script>";
-                exit;
+        if($user) {
 
-            } else {
-                echo "El equipo seleccionado no fue encontrado.";
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $profe_id = $_POST["id"];
+                $professorsJ =$_POST["profes"];
+                $professorsS = json_decode($professorsJ, true);
+                $professors = Professor::all();
+                $equipo_id = $_POST["equipo"];
+                $profe = Professor::find($profe_id);
+                $uProfe = User::find($profe->usuarioId);
+
+                foreach($professorsS as $profesor){
+                    $professor = Professor::find($profesor['id']);
+                    $user = User::find($professor->usuarioId);
+                    $professor->nombre = $user->nombre;
+                    $professor->apellidos = $user->apellidos;
+                    $professor->correo = $user->correo;
+                    $professor->celular = $user->celular;
+                    $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
+                    $professor->id = $professor->id;
+                    $professorSS[] = $professor;
+                    }
+            
+                if ($user->campusId == $uProfe->campusId) {
+                    $asistente = Asistentes::buscar($userId);
+                    $fecha_hora_actual = date("Y-m-d H:i:s");
+                    print($fecha_hora_actual);
+
+                    $query = "INSERT INTO bitacora (profesorId, equipoId, asistenteId, fecha) VALUES ($profe_id, $equipo_id, $asistente->id, '$fecha_hora_actual')";
+                    Bitacora::update2($query);
+            
+                    $query = "DELETE FROM profesorxequipo WHERE profesorId = $profe_id AND equipoID = $equipo_id";
+                    Team::update2($query);
+                    Bitacora::setAlert("success", "Profesor dado de baja exitosamente");
+                    $redirectUrl = sprintf("/editar/equipo/trabajo?id=%s", urlencode($info->nombre));
+                    echo "<script>window.location.replace('$redirectUrl');</script>";
+                    exit;
+
+                } else {
+                    Bitacora::setAlert("error", "La asistente administrativa no puede dar de baja ya que el profesor no es del mismo campus");
+                }
             }
         }
+        $alerts = Bitacora::getalerts();
+        $router->render('guias/editar', [
+            'alerts' => $alerts,
+            'professors' => $professorSS,
+            'equipoId' => $equipo
+        ]);
     }
     public static function editTeam(Router $router){
         $alerts=[];
@@ -208,7 +245,6 @@ class GuiasController {
             $professor->correo = $user->correo;
             $professor->celular = $user->celular;
 
-            $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
             $professor->id = $professor->id;
             $professorSS[] = $professor;
             
@@ -239,8 +275,6 @@ class GuiasController {
                 $professor->apellidos = $user->apellidos;
                 $professor->correo = $user->correo;
                 $professor->celular = $user->celular;
-
-                $professor->coordinador = $professor->isCoordinador ? 'Sí' : 'No';
                 $professor->id = $professor->id;
                 $profes[] = $professor;
             }
@@ -284,8 +318,6 @@ class GuiasController {
                 $profesorId->correo = $user->correo;
                 $profesorId->celular = $user->celular;
                 $profesorId->campusId = $user->campusId;
-
-                $profesorId->coordinador = $profesorId->isCoordinador ? 'Sí' : 'No';
                 $profesorId->id = $profesorId->id;
 
                 
@@ -318,7 +350,6 @@ class GuiasController {
                 $profesorId->celular = $user->celular;
                 $profesorId->campusId = $user->campusId;
 
-                $profesorId->coordinador = $profesorId->isCoordinador ? 'Sí' : 'No';
                 $profesorId->id = $profesorId->id;
                 $agregar[] = $profesorId;
 
@@ -359,9 +390,7 @@ class GuiasController {
             else if ($LI !== 1){
                 Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
             }
-            else if ($coordinatorCount !== 1) {
-                Professor::setAlert('error', 'Debe seleccionar exactamente 1 coordinador.');
-            } else {
+            else {
                 foreach ($selectedProfessors as $professorId) {
                     $query = "INSERT INTO profesorxequipo (profesorId, equipoId) VALUES ($professorId, $equipo)";
                     Team::update2($query);
@@ -478,10 +507,7 @@ class GuiasController {
             }
             else if ($LI !== 1){
                 Professor::setAlert('error', 'Debe seleccionar exactamente 1 profesor por sede/recinto.');
-            }
-            else if ($coordinatorCount !== 1) {
-                Professor::setAlert('error', 'Debe seleccionar exactamente 1 coordinador.');
-            } else {
+            }else {
                 $nombreEquipo =  "Equipo Guía Primer Ingreso " . $anno; 
                 $query = "INSERT INTO equipo (nombre) VALUES ('$nombreEquipo')";
                 $equipo = Team::find2($nombreEquipo);

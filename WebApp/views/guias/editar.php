@@ -68,6 +68,7 @@ include_once __DIR__ . "/../templates/alerts.php";
                                 <form method="POST" action="/editar/equipo/trabajo?id=<?php echo $equipoId;?>" class="table__form">
                                     <input type="hidden" name="id" value="<?php echo $professor->id; ?>">
                                     <input type="hidden" name="equipo" value="<?php echo $equipoId; ?>">
+                                    <input type="hidden" name="profes" value="<?php echo htmlspecialchars(json_encode($professors)) ?>">
                                     <button  class="table__action table__action--delete" type="submit">
                                         <i class="fa-solid fa-trash"></i>
                                         Dar de Baja

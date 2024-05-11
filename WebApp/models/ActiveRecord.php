@@ -106,6 +106,7 @@ class ActiveRecord {
         $result = self::$db->query($query);
         return ( $result ) ;
     }
+    
 
     public static function get($limit) {
         $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT $limit" ;
