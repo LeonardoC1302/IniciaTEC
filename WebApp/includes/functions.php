@@ -58,3 +58,10 @@ function isAssistantCartago(){
     }
     return isset($_SESSION['rol']) && ($_SESSION['rol'] === 'asistente administrativo') && ($_SESSION['campus'] === 'ca');
 }
+
+function isAdmin(){
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    return isset($_SESSION['rol']) && ($_SESSION['rol'] === 'admin');
+}

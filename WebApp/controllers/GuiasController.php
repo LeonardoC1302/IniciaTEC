@@ -85,6 +85,9 @@ class GuiasController {
 
     }
     public static function asistentesAdmin(Router $router){
+        if(!isAssistant() && !isTeacher() && !isAdmin()){
+            header('Location: /');
+        }
         $router->render('guias/asistentesAdmin');
     }
     

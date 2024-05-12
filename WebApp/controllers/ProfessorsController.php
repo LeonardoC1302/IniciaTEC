@@ -17,6 +17,9 @@ class ProfessorsController
 {
     public static function index(Router $router)
     {
+        if(!isAssistant() && !isAdmin()) {
+            header('Location: /');
+        }
         $professors = Professor::all();
 
         foreach ($professors as $professor) {
@@ -115,6 +118,9 @@ class ProfessorsController
 
     public static function coordinator(Router $router)
     {
+        if(!isAssistantCartago() && !isAdmin()) {
+            header('Location: /');
+        }
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $teamId = $_POST['teamId'];
             $profId = $_POST['profId'];

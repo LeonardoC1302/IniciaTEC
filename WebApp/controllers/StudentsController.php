@@ -18,6 +18,9 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class StudentsController
 {
     public static function index(Router $router){
+        if(!isAssistant() && !isTeacher() && !isAdmin()) {
+            header('Location: /');
+        }
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $studentRole = Role::where('nombre', 'Estudiante');
             if($_POST['filtro'] === "carnet"){
@@ -64,6 +67,9 @@ class StudentsController
     }
 
     public static function update(Router $router){
+        if(!isTeacher() && !isAdmin()){
+            header('Location: /students');
+        }
         $alerts = [];
 
         $id = $_GET['id'];
@@ -183,6 +189,9 @@ class StudentsController
     }
 
     public static function report(Router $router){
+        if(!isTeacher() && !isAdmin()){
+            header('Location: /students');
+        }
         $alerts = [];
         $campus = Campus::all();
         $students = Student::all();
@@ -259,5 +268,4 @@ class StudentsController
     }
 }
 
-//Validacion de editar estudiantes. Solo si pertenece a la misma sede
 ?>

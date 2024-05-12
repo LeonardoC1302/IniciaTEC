@@ -14,6 +14,9 @@ use Model\Evidence;
 
 class Planscontroller {
     public static function index(Router $router){
+        if(!isAssistant() && !isAdmin()) {
+            header('Location: /');
+        }
         $plans = Plan::all();
 
         foreach($plans as $plan){
@@ -26,6 +29,9 @@ class Planscontroller {
     }
 
     public static function plan(Router $router){
+        if(!isTeacher() && !isAdmin()){
+            header('Location: /plans');
+        }
         $id = $_GET['id'] ?? null;
         if(!$id){
             header('Location: /plans');
@@ -68,6 +74,9 @@ class Planscontroller {
     }
 
     public static function activity(Router $router){
+        if(!isTeacher() && !isAdmin()){
+            header('Location: /plans');
+        }
         $planId = $_GET['plan'] ?? null;
         $activityId = $_GET['id'] ?? null;
 
@@ -112,6 +121,9 @@ class Planscontroller {
     }
 
     public static function create(Router $router){
+        if(!isCoordinator() && !isAdmin()){
+            header('Location: /plans');
+        }
         $alerts = [];
         $plan = new Plan();
 
@@ -179,6 +191,9 @@ class Planscontroller {
     }
 
     public static function updateActivity(Router $router){
+        if(!isCoordinator() && !isAdmin()){
+            header('Location: /plans');
+        }
         $planId = $_GET['plan'] ?? null;
         $alerts = [];
         $types = ActivityType::all();
@@ -313,7 +328,11 @@ class Planscontroller {
     }
 
     public static function comment(Router $router){
+        if(!isTeacher() && !isAdmin()){
+            header('Location: /plans');
+        }
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
             // If commentId is '' turn into null
             if($_POST['comentarioId'] == ''){
                 $_POST['comentarioId'] = null;
