@@ -19,8 +19,7 @@ class AuthController {
                 if(!$user){
                     User::setAlert('error', 'El usuario no existe');
                 } else{
-                    $user->hashPassword();
-                    $user->save();
+                    // debug(password_hash($_POST['contrasenna'], PASSWORD_BCRYPT));
                     if(password_verify($_POST['contrasenna'], $user->contrasenna)){
                         session_start();
                         $_SESSION['id'] = $user->id;

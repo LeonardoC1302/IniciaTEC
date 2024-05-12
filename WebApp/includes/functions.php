@@ -42,7 +42,7 @@ function isCoordinator(){
     if(!$professor){
         return false;
     }
-    return isset($_SESSION['rol']) && ($professor->isCoordinador);
+    return isset($_SESSION['rol']) && ($_SESSION['rol'] === 'profesor') && ($professor->isCoordinador);
 }
 
 function isAssistant(){
