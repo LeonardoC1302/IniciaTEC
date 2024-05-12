@@ -164,7 +164,6 @@ class ProfessorsController
                 }
                 $professor->save();
             }
-            debug($professor);
             header('Location: /professors');
 
         }
