@@ -55,45 +55,47 @@
         </div>
     <?php } ?>
 
-    <div class="activity__comments">
-        <h2 class="activity__comments__title">Comentarios</h2>
-        <?php if(!empty($comments)){ ?>
-            <div class="comments" id="comments">
-                <?php foreach($comments as $comment){ ?>
-                    <div class="comment">
-                        <div class="comment__info">
-                            <p class="comment__data">Prof. <?php echo $comment->profesor ?> ( <?php echo $comment->fecha; ?> )</p>
-                            <p class="comment__content"><?php echo $comment->contenido; ?></p>
-                        </div>
-                        <a class="comment__comment" data-commentId="<?php echo $comment->id; ?>">
-                            <i class="fa-solid fa-comment"></i>
-                        </a>
-                    </div>
-
-                    <?php foreach($comment->subcomments as $subcomment){ ?>
-                        <div class="comment--subcomment">
+    <?php if(isTeacher()){ ?>
+        <div class="activity__comments">
+            <h2 class="activity__comments__title">Comentarios</h2>
+            <?php if(!empty($comments)){ ?>
+                <div class="comments" id="comments">
+                    <?php foreach($comments as $comment){ ?>
+                        <div class="comment">
                             <div class="comment__info">
-                                <p class="comment__data">Prof. <?php echo $subcomment->profesor ?> ( <?php echo $subcomment->fecha; ?> )</p>
-                                <p class="comment__content"><?php echo $subcomment->contenido; ?></p>
+                                <p class="comment__data">Prof. <?php echo $comment->profesor ?> ( <?php echo $comment->fecha; ?> )</p>
+                                <p class="comment__content"><?php echo $comment->contenido; ?></p>
                             </div>
+                            <a class="comment__comment" data-commentId="<?php echo $comment->id; ?>">
+                                <i class="fa-solid fa-comment"></i>
+                            </a>
                         </div>
-                    <?php } ?>
-                <?php } ?>
-            </div>
-        <?php } else { ?>
-            <p class="activity__comments__empty">No hay comentarios para esta actividad</p>
-        <?php } ?>
 
-        <div class="comment-form-container comment-form-container--disabled" id="commentForm">
-            <i class="fa-solid fa-xmark" id="formClose"></i>
-            <h3 class="comment-form-container__title">Realizar Comentario</h3>
-            <form action="/plans/activity/comment" method="POST" class="comment-form">
-                <input type="hidden" name="actividadId" value="<?php echo $activity->id; ?>">
-                <input type="hidden" name="comentarioId" value="<?php echo null; ?>" id="inputCommentId">
-                <input type="hidden" name="planId" value="<?php echo $planId; ?>">
-                <textarea name="contenido" id="contenido" cols="30" rows="10" placeholder="Escribe un comentario" class="comment-form__textarea"></textarea>
-                <button type="submit" class="comment-form__submit">Comentar</button>
-            </form>
+                        <?php foreach($comment->subcomments as $subcomment){ ?>
+                            <div class="comment--subcomment">
+                                <div class="comment__info">
+                                    <p class="comment__data">Prof. <?php echo $subcomment->profesor ?> ( <?php echo $subcomment->fecha; ?> )</p>
+                                    <p class="comment__content"><?php echo $subcomment->contenido; ?></p>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+            <?php } else { ?>
+                <p class="activity__comments__empty">No hay comentarios para esta actividad</p>
+            <?php } ?>
+
+            <div class="comment-form-container comment-form-container--disabled" id="commentForm">
+                <i class="fa-solid fa-xmark" id="formClose"></i>
+                <h3 class="comment-form-container__title">Realizar Comentario</h3>
+                <form action="/plans/activity/comment" method="POST" class="comment-form">
+                    <input type="hidden" name="actividadId" value="<?php echo $activity->id; ?>">
+                    <input type="hidden" name="comentarioId" value="<?php echo null; ?>" id="inputCommentId">
+                    <input type="hidden" name="planId" value="<?php echo $planId; ?>">
+                    <textarea name="contenido" id="contenido" cols="30" rows="10" placeholder="Escribe un comentario" class="comment-form__textarea"></textarea>
+                    <button type="submit" class="comment-form__submit">Comentar</button>
+                </form>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 </div>

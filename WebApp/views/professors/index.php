@@ -5,7 +5,9 @@
 
 <div class="professors_actions">
     <a href="/professors/register" class="professors_actions__register">Registrar Profesor</a>
-    <a href="/professors/coordinator" class="professors_actions__coordinator">Dar Rol Coordinador</a>
+    <?php if(isAssistantCartago()){ ?>
+        <a href="/professors/coordinator" class="professors_actions__coordinator">Dar Rol Coordinador</a>
+    <?php } ?>
 </div>
 
 <div class="professors">
