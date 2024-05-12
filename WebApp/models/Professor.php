@@ -16,7 +16,7 @@ class Professor extends ActiveRecord{
     public $apellidos;
     public $correo;
     public $celular;
-    public $coordinador;
+    //public $coordinador;
     public $campusId;
 
 

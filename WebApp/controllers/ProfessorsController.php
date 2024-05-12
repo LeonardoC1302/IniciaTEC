@@ -73,8 +73,27 @@ class ProfessorsController
 
                 $_POST['foto'] = $image_name;
             }
-            $professor->sync($_POST);
+            $campusName = '';
+            $num = 0;
+            foreach($campus as $c){
+                if($c->id === $_POST['campusId']){
+                    $campusName = $c->nombre;
+                    break;
+                }
+            }
+            $rolEstudiante = Role::where('nombre', 'Profesor');
+            $campusNum = User::whereTwo('campusId', $_POST['campusId'], 'roleId', $rolEstudiante->id);
+            $num = count($campusNum);
+            $num = $num+1;
+            $cantidadProf = strval($num);
+            if(strlen($cantidadProf) === 1){
+                $codigoProf = $campusName . "-0" . $cantidadProf; 
+            }else{
+                $codigoProf = $campusName . "-" . $cantidadProf;
+            }
             
+            $professor->sync($_POST);
+            $professor->codigo = $codigoProf;
             $alerts = $professor->validateRegister();
             // debug($alerts);
 
@@ -100,7 +119,6 @@ class ProfessorsController
 
                 $image_png->save($image_folder . '/' . $image_name . '.png');
                 $image_webp->save($image_folder . '/' . $image_name . '.webp');
-
 
                 $result = $professor->save();
                 if($result) {
@@ -146,7 +164,7 @@ class ProfessorsController
                 }
                 $professor->save();
             }
-
+            debug($professor);
             header('Location: /professors');
 
         }
