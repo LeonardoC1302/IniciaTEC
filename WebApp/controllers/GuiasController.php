@@ -568,7 +568,9 @@ class GuiasController
 
     public static function registerasistente(Router $router)
     {
-
+        if (!isAssistant() && !isAdmin()) {
+            header('Location: /guias');
+        }
         $alerts = [];
         $user = new User();
         $asistente = new Asistentes();
