@@ -18,10 +18,12 @@
                 <?php } ?>
             </select>
         </div> <!-- /create-student__form__field -->
+<!--
         <div class="create-student__form__field">
             <label for="code" class="create-student__form__label">Código</label>
-            <input class="create-student__form__input" type="text" placeholder="XX-NN" id="code" name="codigo" value="<?php echo $professor->codigo; ?>">
-        </div> <!-- /create-student__form__field -->
+            <input readonly class="create-student__form__input" type="text" placeholder="XX-NN" id="code" name="codigo" value="<?php echo $professor->codigo; ?>">
+        </div> 
+-->
         <div class="create-student__form__field">
             <label for="name" class="create-student__form__label">Nombre</label>
             <input class="create-student__form__input" type="text" placeholder="Ingrese su nombre" id="name" name="nombre" value="<?php echo $professor->nombre; ?>">
