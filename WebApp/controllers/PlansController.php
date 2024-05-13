@@ -14,7 +14,7 @@ use Model\Evidence;
 
 class Planscontroller {
     public static function index(Router $router){
-        if(!isAssistant() && !isAdmin()) {
+        if(!isAssistant() && !isTeacher() && !isAdmin()) {
             header('Location: /');
         }
         $plans = Plan::all();
@@ -29,7 +29,7 @@ class Planscontroller {
     }
 
     public static function plan(Router $router){
-        if(!isTeacher() && !isAdmin()){
+        if(!isTeacher() && !isAdmin() && !isAssistant()){
             header('Location: /plans');
         }
         $id = $_GET['id'] ?? null;
@@ -74,7 +74,7 @@ class Planscontroller {
     }
 
     public static function activity(Router $router){
-        if(!isTeacher() && !isAdmin()){
+        if(!isTeacher() && !isAssistant() && !isAdmin()){
             header('Location: /plans');
         }
         $planId = $_GET['plan'] ?? null;

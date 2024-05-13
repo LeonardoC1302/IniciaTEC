@@ -6,10 +6,12 @@
 <div class="activity">
     <div class="activity__main">
         <h1 class="activity__main__title"><?php echo $activity->nombre; ?></h1>
-        <a class="activity__main__comment">
-            <i class="fa-solid fa-comment"></i>
-            Realizar Comentario
-        </a>
+        <?php if(isTeacher()){ ?>
+            <a class="activity__main__comment">
+                <i class="fa-solid fa-comment"></i>
+                Realizar Comentario
+            </a>
+        <?php } ?>
     </div>
     <div class="activity__card">
         <div class="activity__info">
@@ -24,7 +26,7 @@
             <p class="activity__info__content"><span>Afiche: </span><?php echo $activity->afiche;?></p>
             <p class="activity__info__content"><span>Estado: </span><?php echo $activity->estado;?></p>
         </div>
-        <?php if($activity->estado != 'Cancelada' && $activity->estado != 'Realizada'){ ?>
+        <?php if(($activity->estado != 'Cancelada' && $activity->estado != 'Realizada') && isCoordinator()){ ?>
             <a href="/plan/activity/update?id=<?php echo $activity->id; ?>&plan=<?php echo $planId; ?>" class="activity__info__edit">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Editar Actividad

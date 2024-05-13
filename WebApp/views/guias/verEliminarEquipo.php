@@ -15,7 +15,9 @@
                     <tr>
                         <th scope="col" class="table__th">Equipo</th>
                         <th scope="col" class="table__th"></th>
-                        <th scope="col" class="table__th"></th>
+                        <?php if(isAssistant()){ ?>
+                            <th scope="col" class="table__th"></th>
+                        <?php } ?>
                     </tr>
                 </thead>
 
@@ -31,12 +33,14 @@
                                     Ver Detalles
                                 </a>
                             </td>
-                            <td class="table__td">
-                                <a href="/editar/equipo/trabajo?id=<?php echo $equipo->nombre;?>" class="activityCard__view">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Editar Equipo
-                                </a>
-                            </td>
+                            <?php if(isAssistant()){ ?>
+                                <td class="table__td">
+                                    <a href="/editar/equipo/trabajo?id=<?php echo $equipo->nombre;?>" class="activityCard__view">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        Editar Equipo
+                                    </a>
+                                </td>
+                            <?php } ?>
                         </tr>
                         
                     <?php }?>

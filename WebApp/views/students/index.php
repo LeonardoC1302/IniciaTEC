@@ -4,9 +4,11 @@
 </a>
 
 <div class="students_actions">
-    <div>
-        <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
-    </div>
+    <?php if(isAssistant()){ ?>
+        <div>
+            <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
+        </div>
+    <?php } ?>
 
     <div class="filtros__form-container">
         <form id="studentOrder" method="POST">

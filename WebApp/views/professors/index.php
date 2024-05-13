@@ -22,7 +22,6 @@
                     <th scope="col" class="table__th">Teléfono</th>
                     <th scope="col" class="table__th">Celular</th>
                     <th scope="col" class="table__th">Coordinador</th>
-                    <th scope="col" class="table__th"></th>
                 </tr>
             </thead>
 
@@ -49,15 +48,6 @@
                         </td>
                         <td class="table__td">
                             <?php echo $professor->coordinador; ?>
-                        </td>
-                        <td class="table__td--actions">
-                            <form method="POST" action="/students/delete" class="table__form">
-                                <input type="hidden" name="id" value="<?php echo $professor->id; ?>">
-                                <button class="table__action table__action--delete" type="submit">
-                                    <i class="fa-solid fa-trash"></i>
-                                    Dar de Baja
-                                </button>
-                            </form>
                         </td>
                     </tr>
                 <?php }?>

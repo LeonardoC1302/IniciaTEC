@@ -2,10 +2,11 @@
     <i class="fa-solid fa-circle-left"></i>
     Volver
 </a>
-
-<div class="plans__actions">
-    <a href="/plans/create" class="plans__actions__create">Crear Plan de Trabajo</a>
-</div>
+<?php if(isCoordinator()){ ?>|
+    <div class="plans__actions">
+        <a href="/plans/create" class="plans__actions__create">Crear Plan de Trabajo</a>
+    </div>
+<?php } ?>
 
 
 <div class="students">
@@ -34,13 +35,15 @@
                                 Ver Plan
                             </a>
 
-                            <form method="POST" action="/plans/delete" class="table__form">
-                                <input type="hidden" name="id" value="<?php echo $plan->id; ?>">
-                                <button class="table__action table__action--delete" type="submit">
-                                    <i class="fa-solid fa-trash"></i>
-                                    BORRAR
-                                </button>
-                            </form>
+                            <?php if(isCoordinator()){ ?>
+                                <form method="POST" action="/plans/delete" class="table__form">
+                                    <input type="hidden" name="id" value="<?php echo $plan->id; ?>">
+                                    <button class="table__action table__action--delete" type="submit">
+                                        <i class="fa-solid fa-trash"></i>
+                                        BORRAR
+                                    </button>
+                                </form>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php }?>

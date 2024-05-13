@@ -9,10 +9,12 @@
             <h1 class="plan__info__title"><?php echo $plan->nombre; ?></h1>
             <p class="plan__info__description"><?php echo $plan->descripcion; ?></p>
         </div>
-        <a href="/plan/add?plan=<?php echo $plan->id; ?>" class="plan__add">
-            <i class="fa-solid fa-circle-plus"></i>
-            Agregar Actividad
-        </a>
+        <?php if(isCoordinator()){ ?>
+            <a href="/plan/add?plan=<?php echo $plan->id; ?>" class="plan__add">
+                <i class="fa-solid fa-circle-plus"></i>
+                Agregar Actividad
+            </a>
+        <?php } ?>
     </div>
 
     <h2 class="plan__activities__title">Actividades</h2>
