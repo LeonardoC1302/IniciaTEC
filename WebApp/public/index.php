@@ -8,9 +8,9 @@ use Controllers\AuthController;
 use MVC\Router;
 use Controllers\PagesController;
 use Controllers\Planscontroller;
-use Controllers\ProfessorsController; 
-use Controllers\StudentsController; 
-use Controllers\GuiasController; 
+use Controllers\ProfessorsController;
+use Controllers\StudentsController;
+use Controllers\GuiasController;
 
 
 $router = new Router();
@@ -97,12 +97,10 @@ $router->post('/add/equipo/trabajo', [GuiasController::class, 'addTeam']);
 $router->post('/anno/equipo', [GuiasController::class, 'editYearTeam']);
 $router->post('/edit/equipo/trabajo', [GuiasController::class, 'editTeam']);
 $router->post('/guias/actualizar/equipo', [GuiasController::class, 'addTeam2']);
-
-
+$router->get('/guias/register-asistente', [GuiasController::class, 'registerasistente']);
+$router->post('/guias/register-asistente', [GuiasController::class, 'registerasistente']);
 
 
 
 // Run the router
 $router->checkRoutes();
-
-

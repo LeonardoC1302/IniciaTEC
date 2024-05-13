@@ -1766,6 +1766,68 @@ h3 {
   font-weight: 700;
 }
 
+.create-asistant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: min(95%, 140rem);
+  margin: 0 auto;
+}
+.create-asistant__form {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.create-asistant__form__field {
+  display: flex;
+  flex-direction: column;
+}
+.create-asistant__form__label {
+  margin-bottom: 0.2rem;
+  font-size: 1.7rem;
+  color: #515442;
+}
+.create-asistant__form__input {
+  width: 30rem;
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
+  font-size: 2rem;
+}
+.create-asistant__form__input:focus {
+  outline: none;
+}
+.create-asistant__form__button-container {
+  display: flex;
+  justify-content: center;
+}
+.create-asistant__form__input--photo {
+  color: #4D5AE6;
+}
+.create-asistant__form__select {
+  background-color: #FFFFFF;
+  border: none;
+  border-bottom: 2px solid #4D5AE6;
+}
+.create-asistant__form__submit {
+  background-color: #4D5AE6;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  grid-column: span 2;
+}
+.create-asistant__form__submit:hover {
+  background-color: #2031e0;
+  cursor: pointer;
+}
+
 .auth, .auth--centered {
   width: min(95%, 60rem);
   margin: 0 auto;
