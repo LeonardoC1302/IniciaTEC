@@ -6,7 +6,7 @@
 <div class="activity">
     <div class="activity__main">
         <h1 class="activity__main__title"><?php echo $activity->nombre; ?></h1>
-        <?php if(isTeacher()){ ?>
+        <?php if(isTeacher() || isAdmin()){ ?>
             <a class="activity__main__comment">
                 <i class="fa-solid fa-comment"></i>
                 Realizar Comentario
@@ -26,7 +26,7 @@
             <p class="activity__info__content"><span>Afiche: </span><?php echo $activity->afiche;?></p>
             <p class="activity__info__content"><span>Estado: </span><?php echo $activity->estado;?></p>
         </div>
-        <?php if(($activity->estado != 'Cancelada' && $activity->estado != 'Realizada') && isCoordinator()){ ?>
+        <?php if(($activity->estado != 'Cancelada' && $activity->estado != 'Realizada') && (isCoordinator() || isAdmin())){ ?>
             <a href="/plan/activity/update?id=<?php echo $activity->id; ?>&plan=<?php echo $planId; ?>" class="activity__info__edit">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Editar Actividad
@@ -57,7 +57,7 @@
         </div>
     <?php } ?>
 
-    <?php if(isTeacher()){ ?>
+    <?php if(isTeacher() || isAdmin()){ ?>
         <div class="activity__comments">
             <h2 class="activity__comments__title">Comentarios</h2>
             <?php if(!empty($comments)){ ?>

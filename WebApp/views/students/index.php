@@ -4,7 +4,7 @@
 </a>
 
 <div class="students_actions">
-    <?php if(isAssistant()){ ?>
+    <?php if(isAssistant() || isAdmin()){ ?>
         <div>
             <a href="/students/register" class="students_actions__register">Registrar Estudiante</a>
         </div>

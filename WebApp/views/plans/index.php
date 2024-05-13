@@ -2,7 +2,7 @@
     <i class="fa-solid fa-circle-left"></i>
     Volver
 </a>
-<?php if(isCoordinator()){ ?>|
+<?php if(isCoordinator() || isAdmin()){ ?>|
     <div class="plans__actions">
         <a href="/plans/create" class="plans__actions__create">Crear Plan de Trabajo</a>
     </div>
@@ -35,7 +35,7 @@
                                 Ver Plan
                             </a>
 
-                            <?php if(isCoordinator()){ ?>
+                            <?php if(isCoordinator() || isAdmin()){ ?>
                                 <form method="POST" action="/plans/delete" class="table__form">
                                     <input type="hidden" name="id" value="<?php echo $plan->id; ?>">
                                     <button class="table__action table__action--delete" type="submit">
