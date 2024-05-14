@@ -7,7 +7,7 @@ use Controllers\APIProfessors;
 use Controllers\AuthController;
 use MVC\Router;
 use Controllers\PagesController;
-use Controllers\Planscontroller;
+use Controllers\PlansController;
 use Controllers\ProfessorsController;
 use Controllers\StudentsController;
 use Controllers\GuiasController;
@@ -51,24 +51,24 @@ $router->get('/students/report', [StudentsController::class, 'report']);
 $router->post('/students/report', [StudentsController::class, 'report']);
 
 // Activities routes
-$router->get('/plans', [Planscontroller::class, 'index']);
+$router->get('/plans', [PlansController::class, 'index']);
 
-$router->get('/plans/create', [Planscontroller::class, 'create']);
-$router->post('/plans/create', [Planscontroller::class, 'create']);
+$router->get('/plans/create', [PlansController::class, 'create']);
+$router->post('/plans/create', [PlansController::class, 'create']);
 
-$router->get('/plans/plan', [Planscontroller::class, 'plan']);
+$router->get('/plans/plan', [PlansController::class, 'plan']);
 
-$router->get('/plans/plan/activity', [Planscontroller::class, 'activity']);
+$router->get('/plans/plan/activity', [PlansController::class, 'activity']);
 
-$router->get('/plan/activity/update', [Planscontroller::class, 'updateActivity']);
-$router->post('/plan/activity/update', [Planscontroller::class, 'updateActivity']);
+$router->get('/plan/activity/update', [PlansController::class, 'updateActivity']);
+$router->post('/plan/activity/update', [PlansController::class, 'updateActivity']);
 
-$router->post('/plans/activity/comment', [Planscontroller::class, 'comment']);
+$router->post('/plans/activity/comment', [PlansController::class, 'comment']);
 
-$router->get('/plan/add', [Planscontroller::class, 'add']);
-$router->post('/plan/add', [Planscontroller::class, 'add']);
+$router->get('/plan/add', [PlansController::class, 'add']);
+$router->post('/plan/add', [PlansController::class, 'add']);
 
-$router->post('/plans/delete', [Planscontroller::class, 'delete']);
+$router->post('/plans/delete', [PlansController::class, 'delete']);
 
 
 // Students routes

@@ -12,7 +12,7 @@ use MVC\Router;
 use Intervention\Image\ImageManagerStatic as Image;
 use Model\Evidence;
 
-class Planscontroller {
+class PlansController {
     public static function index(Router $router){
         if(!isAssistant() && !isTeacher() && !isAdmin()) {
             header('Location: /');
