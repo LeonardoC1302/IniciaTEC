@@ -1,7 +1,0 @@
-GitHub Links:
-
-Https: https://github.com/LeonardoC1302/IniciaTEC.git
-
-SSH: git@github.com:LeonardoC1302/IniciaTEC.git
-
-CLI: gh repo clone LeonardoC1302/IniciaTEC
