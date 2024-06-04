@@ -11,6 +11,7 @@ use Model\UserStatus;
 use MVC\Router;
 use League\Csv\Writer;
 use League\Csv\Reader;
+use Model\StudentUserDecorator;
 use SplTempFileObject;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -36,6 +37,7 @@ class StudentsController
             }else{
                 $users = User::whereOrder('roleId', $studentRole->id, 'apellidos ASC');
                 $students = array();
+
 
                 foreach($users as $user){
                     $student = Student::where('usuarioId', $user->id);
@@ -162,27 +164,33 @@ class StudentsController
                     $estado = UserStatus::where('nombre', 'Activo');
                     $record['estadoId'] = $estado->id;
 
+                    // Create the StudentUserDecorator
+                    $studentDecorator = new StudentUserDecorator($record);
+                    // debug($studentDecorator);
+
                     // Create the user
-                    $user = new User($record);
-                    $user->id = null;
-                    $alerts = $user->validateRegister();
+                    // $user = new User($record);
+                    // $user->id = null;
+                    $alerts = $studentDecorator->validateRegister();
 
                     if(empty($alerts)){
-                        $user->hashPassword();
-                        $result = $user->save();
+                        $studentDecorator->hashPassword();
+                        // debug($studentDecorator);
+                        $studentDecorator->save();
+
+                        // $result = $user->save();
 
                         // Create the student
-                        $student = new Student([
-                            'usuarioId' => $result['id'],
-                            'carnet' => $record['carnet']
-                        ]);
-                        $student->save();
+                        // $student = new Student([
+                        //     'usuarioId' => $result['id'],
+                        //     'carnet' => $record['carnet']
+                        // ]);
+                        // $student->save();
                     }
                 }
                 $alerts['success'][] = 'Estudiantes registrados correctamente';
             }
         }
-
         $router->render('students/register', [
             'alerts' => $alerts
         ]);

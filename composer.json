@@ -6,7 +6,8 @@
             "MVC\\" : "./",
             "Controllers\\" : "./controllers",
             "Model\\" : "./models",
-            "Classes\\" : "./classes"
+            "Classes\\" : "./classes",
+            "Interfaces\\" : "./interfaces"
         }
     },
     "authors": [
