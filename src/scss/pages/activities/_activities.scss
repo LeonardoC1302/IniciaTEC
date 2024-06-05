@@ -1,0 +1,68 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.activities {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    &__title{
+        text-align: center;
+        color: v.$primary-color;
+        margin: 1rem 0;
+    }
+    &__description{
+        text-align: center;
+        color: v.$gray;
+        margin: .5rem 0 2rem 0;
+    }
+    &__list{
+        @include m.reset-list;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    &__item{
+        padding: 2.5rem;
+        border: 1px solid v.$gray;
+        margin: 2rem;
+        border-radius: 1rem;
+        &--first{
+            display: flex;
+            flex-basis: 100%;
+            background-color: v.$secondary-color;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin: 0;
+            border: none;
+            border-radius: 0;
+        }
+        &__first{
+            font-weight: v.$bold;
+            margin: 0;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        &__name,
+        &__date,
+        &__description,
+        &__modality,
+        &__week,
+        &__type,
+        &__responsible,
+        &__publication-date,
+        &__state{
+            span{
+                font-weight: v.$bold;
+            }
+            margin: .2rem;
+        }
+
+        &__name{
+            font-size: 2.5rem;
+            font-weight: v.$bold;
+        }
+    }
+}

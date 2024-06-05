@@ -248,6 +248,6 @@ class ActiveRecord {
     public static function whereTwo($column1, $value1, $column2, $value2) {
         $query = "SELECT * FROM " . static::$table . " WHERE $column1 = '$value1' AND $column2 = '$value2'";
         $result = self::querySQL($query);
-        return  $result ;
+        return $result ;
     }
 }

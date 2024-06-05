@@ -22,6 +22,11 @@
                 <a href="/plans" class="header__nav__link">Planes</a>
             <?php } ?>
 
+            <?php if(isStudent()){ ?>
+                <a href="/activities" class="header__nav__link">Calendario</a>
+                <a href="/notificaciones" class="header__nav__link">Notificaciones</a>
+            <?php } ?>
+
             <?php if (isAuth()) : ?>
                 <a href="/account" class="header__nav__link">Mi cuenta</a>
             <?php else : ?>

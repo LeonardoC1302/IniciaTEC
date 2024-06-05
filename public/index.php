@@ -82,6 +82,9 @@ $router->post('/professors/coordinator', [ProfessorsController::class, 'coordina
 
 $router->get('/api/professors', [APIProfessors::class, 'index']);
 
+$router->get('/activities', [StudentsController::class, 'activities']);
+$router->get('/notificaciones', [StudentsController::class, 'notifications']);
+
 // Guias routes
 $router->get('/guias', [GuiasController::class, 'asistentesAdmin']);
 $router->get('/guias/asignar/asistente', [GuiasController::class, 'asignarAsistente']);

@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Activity extends ActiveRecord{
+class Activity extends ActiveRecord implements Element{
     protected static $table = 'actividad';
     protected static $columnsDB = ['id', 'nombre', 'fecha', 'semana', 'descripcion', 'tipoId', 'responsableId', 'fechaPublicacion', 'modalidad', 'enlace', 'afiche', 'estadoId', 'planId', 'diasRecordatorio', 'diasAnuncio', 'justificacion'];
 
@@ -172,5 +172,16 @@ class Activity extends ActiveRecord{
         }
 
         return self::$alerts;
+    }
+
+    public function accept(Visitor $visitor): void{
+        $visitor->visitActivity($this);
+    }
+
+    public function setEstado($estado){
+        $estadoId = ActivityStatus::where('nombre', $estado);
+        if($estadoId){
+            $this->estadoId = $estadoId->id;
+        }
     }
 }

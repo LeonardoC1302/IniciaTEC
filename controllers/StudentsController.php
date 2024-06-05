@@ -11,6 +11,10 @@ use Model\UserStatus;
 use MVC\Router;
 use League\Csv\Writer;
 use League\Csv\Reader;
+use Model\Activity;
+use Model\ActivityStatus;
+use Model\ActivityType;
+use Model\Reminder;
 use Model\StudentUserDecorator;
 use SplTempFileObject;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -272,6 +276,32 @@ class StudentsController
         $router->render('students/report', [
             'alerts' => $alerts,
             'campus' => $campus
+        ]);
+    }
+
+    public static function notifications(Router $router){
+        if(!isStudent()){
+            header('Location: /');
+        }
+        $notifications = Reminder::order('fecha', 'DESC');
+        $router->render('students/notifications', [
+            'notifications' => $notifications
+        ]);
+    }
+
+    public static function activities(Router $router){
+        if(!isStudent()){
+            header('Location: /');
+        }
+        $activities = Activity::order('fecha', 'ASC');
+        foreach($activities as $activity){
+            $activity->modalidadName = Activity::MODALIDADES[$activity->modalidad];
+            $activity->typeName = ActivityType::where('id', $activity->tipoId)->nombre;
+            $activity->responsibleName = User::where('id', $activity->responsableId)->nombre . ' ' . User::where('id', $activity->responsableId)->apellidos;
+            $activity->stateName = ActivityStatus::where('id', $activity->estadoId)->nombre;
+        }
+        $router->render('students/activities', [
+            'activities' => $activities
         ]);
     }
 }

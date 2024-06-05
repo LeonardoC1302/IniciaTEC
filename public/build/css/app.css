@@ -1955,4 +1955,105 @@ h3 {
   background-color: #5963dd;
   cursor: pointer;
 }
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.activities__title {
+  text-align: center;
+  color: #2A2C41;
+  margin: 1rem 0;
+}
+.activities__description {
+  text-align: center;
+  color: #64748B;
+  margin: 0.5rem 0 2rem 0;
+}
+.activities__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.activities__item {
+  padding: 2.5rem;
+  border: 1px solid #64748B;
+  margin: 2rem;
+  border-radius: 1rem;
+}
+.activities__item--first {
+  display: flex;
+  flex-basis: 100%;
+  background-color: #838BE6;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.activities__item__first {
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
+.activities__item__name, .activities__item__date, .activities__item__description, .activities__item__modality, .activities__item__week, .activities__item__type, .activities__item__responsible, .activities__item__publication-date, .activities__item__state {
+  margin: 0.2rem;
+}
+.activities__item__name span, .activities__item__date span, .activities__item__description span, .activities__item__modality span, .activities__item__week span, .activities__item__type span, .activities__item__responsible span, .activities__item__publication-date span, .activities__item__state span {
+  font-weight: 700;
+}
+.activities__item__name {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.notifications {
+  flex-grow: 1;
+  padding: 5rem;
+}
+.notifications__title {
+  text-align: center;
+  color: #2A2C41;
+}
+.notifications__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reminder {
+  display: flex;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+}
+.reminder__container {
+  display: flex;
+  flex-direction: column;
+}
+.reminder--cancellation {
+  border-left: 5px solid #FF5F5F;
+  background-color: #ffc5c5;
+}
+.reminder--announcement {
+  border-left: 5px solid #4D5AE6;
+  background-color: #d3d6f9;
+}
+.reminder--publication {
+  border-left: 5px solid #02db02;
+  background-color: #c4fec4;
+}
+.reminder__date {
+  font-size: 1.5rem;
+  color: #64748B;
+  margin: 0;
+}
+.reminder__content {
+  margin: 0.5rem 0;
+}
 /*# sourceMappingURL=app.css.map */
