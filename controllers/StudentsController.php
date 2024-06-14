@@ -20,6 +20,8 @@ use SplTempFileObject;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+use function PHPSTORM_META\map;
+
 class StudentsController
 {
     public static function index(Router $router){
@@ -283,9 +285,39 @@ class StudentsController
         if(!isStudent()){
             header('Location: /');
         }
+
         $notifications = Reminder::order('fecha', 'DESC');
+
+        $user = User::where('id', $_SESSION['id']);
+        $lastDate = $user->fechaNotificacion;
+        
+        foreach($notifications as $notification){
+            if($lastDate && ($notification->fecha < $lastDate)){
+                $notification->new = false;
+            } else {
+                $notification->new = true;
+            }
+        }
+        $filtro = "";
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $filtro = $_POST['filtro'];
+            if($filtro === 'leidas'){
+                $notifications = array_filter($notifications, function($notification){
+                    return !$notification->new;
+                });
+            } else if($filtro === 'no-leidas'){
+                $notifications = array_filter($notifications, function($notification){
+                    return $notification->new;
+                });
+            }
+        }
+
+        $user->fechaNotificacion = date('Y-m-d H:i:s');
+        $user->save();
+
         $router->render('students/notifications', [
-            'notifications' => $notifications
+            'notifications' => $notifications,
+            'filtro' => $filtro
         ]);
     }
 

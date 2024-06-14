@@ -13,7 +13,7 @@ class PublishVisitor implements Visitor{
         $estado = ActivityStatus::where('id', $activity->estadoId);
         if($estado) { 
             $estado = strtolower($estado->nombre);
-            // debug($activity->fechaPublicacion);
+
             if ($activity->fechaPublicacion <= $this->currentDate && $estado == 'planeada') {
                 $activity->setEstado('Notificada');
                 $activity->save();

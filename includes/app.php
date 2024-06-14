@@ -24,7 +24,7 @@ $notificationCenter = new NotificationCenter();
 $studentObserver = new StudentObserver($notificationCenter);
 $notificationCenter->attach($studentObserver);
 
-$currentDate = date('2024-05-23');
+$currentDate = date('Y-m-d H:i:s');
 
 $activities = Activity::all();
 $publishVisitor = new PublishVisitor($currentDate);

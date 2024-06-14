@@ -5,7 +5,7 @@ namespace Model;
 class User extends ActiveRecord
 {
     protected static $table = 'usuario';
-    protected static $columnsDB = ['id', 'nombre', 'apellidos', 'correo', 'contrasenna', 'celular', 'campusId', 'roleId', 'estadoId', 'token'];
+    protected static $columnsDB = ['id', 'nombre', 'apellidos', 'correo', 'contrasenna', 'celular', 'campusId', 'roleId', 'estadoId', 'token', 'fechaNotificacion'];
 
     public $id;
     public $nombre;
@@ -17,6 +17,7 @@ class User extends ActiveRecord
     public $roleId;
     public $estadoId;
     public $token;
+    public $fechaNotificacion;
 
     public function __construct($args = [])
     {
@@ -30,6 +31,7 @@ class User extends ActiveRecord
         $this->roleId = $args['roleId'] ?? null;
         $this->estadoId = $args['estadoId'] ?? null;
         $this->token = $args['token'] ?? '';
+        $this->fechaNotificacion = $args['fechaNotificacion'] ?? '';
     }
 
     public function validateLogin()

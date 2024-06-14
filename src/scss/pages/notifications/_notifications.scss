@@ -14,6 +14,29 @@
         flex-direction: column;
         gap: 1rem;
     }
+    &__empty{
+        text-align: center;
+        color: v.$gray;
+        font-size: 2rem;
+    }
+    &__form{
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        @include m.tablet{
+            flex-direction: row;
+        }
+    }
+}
+
+.button-filtro{
+    @include m.button(v.$secondary-color, v.$white);
+    &--active{
+        background-color: darken(v.$secondary-color, 20%);
+    }
 }
 
 .reminder{
@@ -35,6 +58,10 @@
     &--publication{
         border-left: 5px solid v.$green;
         background-color: lighten(v.$green, 45%);
+    }
+    &--read{
+        border-left: 5px solid v.$gray;
+        background-color: lighten(v.$gray, 35%);
     }
     &__date{
         font-size: 1.5rem;
