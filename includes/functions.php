@@ -65,3 +65,9 @@ function isAdmin(){
     }
     return isset($_SESSION['rol']) && ($_SESSION['rol'] === 'admin');
 }
+
+
+function getCurrentDate(){
+    global $currentDate;
+    return $currentDate;
+}

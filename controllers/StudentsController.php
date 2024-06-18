@@ -312,7 +312,10 @@ class StudentsController
             }
         }
 
-        $user->fechaNotificacion = date('Y-m-d H:i:s');
+        $user->fechaNotificacion = getCurrentDate();
+        // current date doesnt have time, add the current time from date('H:i:s')
+        $user->fechaNotificacion = $user->fechaNotificacion . ' ' . date('H:i:s');
+
         $user->save();
 
         $router->render('students/notifications', [

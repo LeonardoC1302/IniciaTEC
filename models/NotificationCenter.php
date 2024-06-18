@@ -39,6 +39,7 @@ class NotificationCenter implements Subject{
             if($activity->estadoId == 4){
                 return;
             }
+
             // Ver si ya hay uno con $fecha, si hay hacer return
             foreach($reminders as $reminder){
                 $reminderDate = date($reminder->fecha);
@@ -51,7 +52,7 @@ class NotificationCenter implements Subject{
 
         $reminder = new Reminder([
             "contenido" => $content,
-            "fecha" => date('Y-m-d H:i:s'),
+            "fecha" => $fecha,
             "actividadId" => $activityId,
             "tipo" => $type
         ]);
