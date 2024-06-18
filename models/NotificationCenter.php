@@ -28,11 +28,26 @@ class NotificationCenter implements Subject{
         
     }
 
-    public function createMessage($type, $content, $activityId = null) {
+    public function createMessage($type, $content, $activityId = null, $fecha) {
         // Lógica para crear y enviar mensajes
         // Revisar que no exista una notificación con esa actividad y ese tipo
+        $activity = Activity::where('id', $activityId);
         $reminders = Reminder::whereTwo('actividadId', $activityId, 'tipo', $type);
-        if(!empty($reminders)) return;
+
+        if(!empty($reminders)){
+            // si la actividad está cancelada (estadoId = 4), se hace return
+            if($activity->estadoId == 4){
+                return;
+            }
+            // Ver si ya hay uno con $fecha, si hay hacer return
+            foreach($reminders as $reminder){
+                $reminderDate = date($reminder->fecha);
+                // Comparar unicamente el día, mes y año, no el tiempo
+                if(date('Y-m-d', strtotime($reminderDate)) == date('Y-m-d', strtotime($fecha))){
+                    return;
+                }
+            }
+        };
 
         $reminder = new Reminder([
             "contenido" => $content,

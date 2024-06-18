@@ -36,7 +36,7 @@ class ReminderVisitor implements Visitor{
                 }
 
             } elseif($estado == 'cancelada'){
-                $this->notificationCenter->createMessage("Cancelación", "La actividad '" . $activity->nombre . "' ha sido cancelada", $activity->id);
+                $this->notificationCenter->createMessage("Cancelación", "La actividad '" . $activity->nombre . "' ha sido cancelada", $activity->id, $this->currentDate);
             }
         }
     }

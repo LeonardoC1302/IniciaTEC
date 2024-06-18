@@ -252,4 +252,10 @@ class ActiveRecord {
         $result = self::querySQL($query);
         return $result ;
     }
+
+    public static function whereThree($column1, $value1, $column2, $value2, $column3, $value3) {
+        $query = "SELECT * FROM " . static::$table . " WHERE $column1 = '$value1' AND $column2 = '$value2' AND $column3 = '$value3'";
+        $result = self::querySQL($query);
+        return $result ;
+    }
 }

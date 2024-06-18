@@ -20,11 +20,12 @@ require 'database.php';
 $db = DatabaseConnection::getInstance()->getConnection();
 ActiveRecord::setDB($db);
 
+$currentDate = date('2024-06-20');
+
 $notificationCenter = new NotificationCenter();
-$studentObserver = new StudentObserver($notificationCenter);
+$studentObserver = new StudentObserver($notificationCenter, $currentDate);
 $notificationCenter->attach($studentObserver);
 
-$currentDate = date('Y-m-d H:i:s');
 
 $activities = Activity::all();
 $publishVisitor = new PublishVisitor($currentDate);
